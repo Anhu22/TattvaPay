@@ -1,0 +1,480 @@
+import styled from "styled-components";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { 
+  Home, 
+  CreditCard, 
+  QrCode, 
+  Settings, 
+  Users, 
+  FileText, 
+  HelpCircle, 
+  LogOut,
+  Menu,
+  X,
+  TrendingUp,
+  Package,
+  Wallet,
+  ChevronDown,
+  DollarSign
+} from "lucide-react";
+
+const LayoutContainer = styled.div`
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fc;
+`;
+
+const Sidebar = styled.div`
+  width: ${props => props.$collapsed ? '80px' : '260px'};
+  background: white;
+  border-right: 1px solid #f0f0f0;
+  transition: width 0.3s ease;
+  position: fixed;
+  height: 100vh;
+  z-index: 1000;
+  
+`;
+
+const Logo = styled.div`
+  font-size: ${props => props.$collapsed ? '16px' : '20px'};
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  span {
+    color: #ff7a00;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+`;
+
+const ToggleButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  width: 100%;
+  
+  &:hover {
+    background: #f8f9fa;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #666;
+  }
+`;
+
+const MenuSection = styled.div`
+  padding: 20px 0;
+`;
+
+const MenuTitle = styled.div`
+  font-size: 12px;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 20px;
+  margin-bottom: 12px;
+  
+  ${props => props.$collapsed && 'display: none;'}
+`;
+
+const MenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &:hover {
+    background: #fff5eb;
+  }
+  
+  &.active {
+    background: #fff5eb;
+    border-left: 3px solid #ff7a00;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: ${props => props.$active ? '#ff7a00' : '#666'};
+    margin-right: ${props => props.$collapsed ? '0' : '12px'};
+  }
+  
+  span {
+    color: ${props => props.$active ? '#ff7a00' : '#666'};
+    font-weight: ${props => props.$active ? '600' : '500'};
+    font-size: 14px;
+    white-space: nowrap;
+    
+    ${props => props.$collapsed && 'display: none;'}
+  }
+`;
+
+const SubMenuItem = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 8px 20px 8px 52px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 13px;
+  color: #666;
+  
+  &:hover {
+    background: #f8f9fa;
+    color: #ff7a00;
+  }
+  
+  &.active {
+    background: #fff5eb;
+    color: #ff7a00;
+    font-weight: 600;
+  }
+  
+  ${props => props.$collapsed && 'display: none;'}
+`;
+
+const TopNavigation = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const NavItem = styled.button`
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &:hover {
+    background: #f8f9fa;
+    color: #333;
+  }
+  
+  &.active {
+    color: #ff7a00;
+    font-weight: 600;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 3px;
+      background: #ff7a00;
+      border-radius: 2px;
+    }
+  }
+  
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+const MainContent = styled.div`
+  flex: 1;
+  padding-top: 70px;
+  min-height: 100vh;
+`;
+
+const TopBar = styled.div`
+  height: 70px;
+  background: white;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+`;
+
+const TopBarLeft = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 32px;
+`;
+
+const TopBarLogo = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  span {
+    color: #ff7a00;
+  }
+`;
+
+const MobileMenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  
+  @media (max-width: 768px) {
+    display: flex;
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: #666;
+  }
+`;
+
+const Spacer = styled.div`
+  flex: 1;
+`;
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+const IconButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  position: relative;
+  
+  &:hover {
+    background: #f8f9fa;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: #666;
+  }
+`;
+
+const NotificationBadge = styled.div`
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 8px;
+  height: 8px;
+  background: #ff7a00;
+  border-radius: 50%;
+`;
+
+const UserSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 50px;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  
+  &:hover {
+    background: #f0f0f0;
+  }
+`;
+
+const UserAvatar = styled.div`
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ff7a00, #ff9f4b);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+`;
+
+const UserInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+  
+  .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.2;
+  }
+  
+  .role {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.2;
+  }
+`;
+
+const ContentArea = styled.div`
+  padding: 24px 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+`;
+
+const DashboardLayout = ({ children }) => {
+  const navigate = useNavigate();
+  const [activeMenu, setActiveMenu] = useState('dashboard');
+
+  const handleMenuClick = (menu) => {
+    setActiveMenu(menu);
+    
+    // Navigate to the appropriate route
+    switch(menu) {
+      case 'dashboard':
+        navigate('/dashboard');
+        break;
+      case 'qr-codes':
+        navigate('/qr-generator');
+        break;
+      case 'payments':
+        navigate('/payments');
+        break;
+      case 'devices':
+        navigate('/devices');
+        break;
+      case 'settlements':
+        navigate('/settlements');
+        break;
+      case 'settings':
+        navigate('/settings');
+        break;
+      default:
+        break;
+    }
+  };
+
+  return (
+    <LayoutContainer>
+      <TopBar>
+        <TopBarLeft>
+          <TopBarLogo>
+            TATTVAM <span>PAY</span>
+          </TopBarLogo>
+          
+          <TopNavigation>
+            <NavItem 
+              className={activeMenu === 'dashboard' ? 'active' : ''}
+              onClick={() => handleMenuClick('dashboard')}
+            >
+              <Home />
+              <span>Dashboard</span>
+            </NavItem>
+                    
+            <NavItem 
+              className={activeMenu === 'qr-codes' ? 'active' : ''}
+              onClick={() => handleMenuClick('qr-codes')}
+            >
+              <QrCode />
+              <span>QR Generator</span>
+            </NavItem>
+          
+            <NavItem 
+              className={activeMenu === 'payments' ? 'active' : ''}
+              onClick={() => handleMenuClick('payments')}
+            >
+              <DollarSign />
+              <span>Payments</span>
+            </NavItem>
+                    
+            <NavItem 
+              className={activeMenu === 'devices' ? 'active' : ''}
+              onClick={() => handleMenuClick('devices')}
+            >
+              <Package />
+              <span>Devices</span>
+            </NavItem>
+          
+            <NavItem 
+              className={activeMenu === 'settlements' ? 'active' : ''}
+              onClick={() => handleMenuClick('settlements')}
+            >
+              <Wallet />
+              <span>Settlements</span>
+            </NavItem>
+          
+            <NavItem 
+              className={activeMenu === 'settings' ? 'active' : ''}
+              onClick={() => handleMenuClick('settings')}
+            >
+              <Settings />
+              <span>Settings</span>
+            </NavItem>
+          </TopNavigation>
+        </TopBarLeft>
+
+        <RightSection>
+          <IconButton>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <NotificationBadge />
+          </IconButton>
+          
+          <IconButton>
+            <Settings />
+          </IconButton>
+          
+          <UserSection>
+            <UserAvatar>VY</UserAvatar>
+            <UserInfo>
+              <span className="name">Va yashodary</span>
+              <span className="role">Business Owner</span>
+            </UserInfo>
+          </UserSection>
+        </RightSection>
+      </TopBar>
+
+      <MainContent>
+        <ContentArea>
+          {children}
+        </ContentArea>
+      </MainContent>
+    </LayoutContainer>
+  );
+};
+
+export default DashboardLayout;
