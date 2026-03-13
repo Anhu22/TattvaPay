@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { QrCode } from "lucide-react";
 import { useNavigate } from "react-router-dom";   
 
 const HeroSection = styled.section`
@@ -101,103 +100,6 @@ const Card = styled.div`
   font-family: 'Inter', -apple-system, sans-serif;
 `;
 
-const CardHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-`;
-
-const Brand = styled.div`
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1a1a;
-  letter-spacing: -0.01em;
-`;
-
-const MenuButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  span {
-    width: 20px;
-    height: 2px;
-    background-color: #666;
-    border-radius: 1px;
-    transition: background-color 0.2s;
-  }
-
-  &:hover span {
-    background-color: #ff7a00;
-  }
-`;
-
-const AmountSection = styled.div`
-  text-align: center;
-  margin-bottom: 32px;
-`;
-
-const AmountLabel = styled.div`
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 8px;
-  font-weight: 500;
-`;
-
-const Amount = styled.div`
-  font-size: 48px;
-  font-weight: 700;
-  color: #1a1a1a;
-  letter-spacing: -0.02em;
-
-  span {
-    font-size: 24px;
-    font-weight: 500;
-    color: #666;
-    margin-right: 4px;
-  }
-`;
-
-const TimerContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin: 32px 0;
-`;
-
-const TimerBlock = styled.div`
-  text-align: center;
-`;
-
-const TimerValue = styled.div`
-  font-size: 36px;
-  font-weight: 600;
-  color: #1a1a1a;
-  line-height: 1;
-  margin-bottom: 4px;
-`;
-
-const TimerLabel = styled.div`
-  font-size: 12px;
-  color: #999;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-`;
-
-const Divider = styled.div`
-  font-size: 36px;
-  font-weight: 300;
-  color: #ccc;
-  line-height: 1;
-`;
-
 const QRBox = styled.div`
   margin: 24px 0;
   display: flex;
@@ -220,26 +122,6 @@ const QRImage = styled.img`
   transform: rotate(2deg);
 `;
 
-const Footer = styled.div`
-  text-align: center;
-  padding-top: 24px;
-  border-top: 1px solid #f0f0f0;
-  margin-top: 8px;
-`;
-
-const PoweredBy = styled.div`
-  font-size: 11px;
-  color: #999;
-  margin-bottom: 4px;
-  letter-spacing: 0.3px;
-`;
-
-const CompanyName = styled.div`
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  letter-spacing: -0.01em;
-`;
 
 const Hero = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ScanLine, Wallet, CheckCircle, ArrowRight, Sparkles } from "lucide-react";
+import { ScanLine, Wallet, CheckCircle, } from "lucide-react";
 
 const Section = styled.section`
   padding: 100px 0;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Zap, ShieldCheck, Mic, ArrowRight } from "lucide-react";
+import { Zap, ShieldCheck, Mic } from "lucide-react";
 
 const Section = styled.section`
   padding: 100px 0;
@@ -151,23 +151,6 @@ const FeatureCard = styled.div`
   }
 `;
 
-const IconWrapper = styled.div`
-  width: 64px;
-  height: 64px;
-  background: ${props => props.gradient || 'rgba(255, 122, 0, 0.1)'};
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ff7a00;
-  margin-bottom: 24px;
-  transition: all 0.3s ease;
-  
-  svg {
-    width: 32px;
-    height: 32px;
-  }
-`;
 
 const CardContent = styled.div`
   h3 {
@@ -215,33 +198,6 @@ const StatsBadge = styled.div`
   }
 `;
 
-const FeatureHighlight = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-`;
-
-const HighlightItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: white;
-  border-radius: 50px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
-  font-size: 14px;
-  color: #4a4a4a;
-  
-  .dot {
-    width: 8px;
-    height: 8px;
-    background: #ff7a00;
-    border-radius: 50%;
-  }
-`;
 
 const BusinessSection = () => {
   const features = [

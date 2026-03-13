@@ -2,24 +2,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import { 
   TrendingUp, 
-  TrendingDown, 
-  CreditCard, 
   Clock, 
-  RefreshCw, 
-  AlertCircle,
   QrCode,
   Plus,
   Download,
   HelpCircle,
-  ChevronUp,
-  ChevronDown,
-  Search,
-  Filter,
-  MoreVertical,
-  ArrowUpRight,
-  Users,
-  Wallet,
-  DollarSign,
   CheckCircle,
   XCircle
 } from "lucide-react";
@@ -424,11 +411,11 @@ const Dashboard = () => {
           </StatCard>
         </StatsGrid>
 
-        <Tabs>
+        {/*<Tabs>
           <Tab $active={activeTab === 'daily'} onClick={() => setActiveTab('daily')}>Daily</Tab>
           <Tab $active={activeTab === 'weekly'} onClick={() => setActiveTab('weekly')}>Weekly</Tab>
           <Tab $active={activeTab === 'monthly'} onClick={() => setActiveTab('monthly')}>Monthly</Tab>
-        </Tabs>
+        </Tabs>*/}
 
         <SectionHeader>
           <h3>Quick Actions</h3>

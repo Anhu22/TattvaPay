@@ -2,20 +2,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
-  Home, 
-  CreditCard, 
+  Home,  
   QrCode, 
   Settings, 
-  Users, 
-  FileText, 
-  HelpCircle, 
-  LogOut,
-  Menu,
-  X,
-  TrendingUp,
   Package,
   Wallet,
-  ChevronDown,
   DollarSign
 } from "lucide-react";
 
@@ -25,129 +16,6 @@ const LayoutContainer = styled.div`
   background: #f8f9fc;
 `;
 
-const Sidebar = styled.div`
-  width: ${props => props.$collapsed ? '80px' : '260px'};
-  background: white;
-  border-right: 1px solid #f0f0f0;
-  transition: width 0.3s ease;
-  position: fixed;
-  height: 100vh;
-  z-index: 1000;
-  
-`;
-
-const Logo = styled.div`
-  font-size: ${props => props.$collapsed ? '16px' : '20px'};
-  font-weight: 700;
-  color: #1a1a1a;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  
-  span {
-    color: #ff7a00;
-  }
-  
-  @media (max-width: 768px) {
-    font-size: 20px;
-  }
-`;
-
-const ToggleButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 20px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s ease;
-  width: 100%;
-  
-  &:hover {
-    background: #f8f9fa;
-  }
-  
-  svg {
-    width: 20px;
-    height: 20px;
-    color: #666;
-  }
-`;
-
-const MenuSection = styled.div`
-  padding: 20px 0;
-`;
-
-const MenuTitle = styled.div`
-  font-size: 12px;
-  font-weight: 600;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 0 20px;
-  margin-bottom: 12px;
-  
-  ${props => props.$collapsed && 'display: none;'}
-`;
-
-const MenuItem = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  
-  &:hover {
-    background: #fff5eb;
-  }
-  
-  &.active {
-    background: #fff5eb;
-    border-left: 3px solid #ff7a00;
-  }
-  
-  svg {
-    width: 20px;
-    height: 20px;
-    color: ${props => props.$active ? '#ff7a00' : '#666'};
-    margin-right: ${props => props.$collapsed ? '0' : '12px'};
-  }
-  
-  span {
-    color: ${props => props.$active ? '#ff7a00' : '#666'};
-    font-weight: ${props => props.$active ? '600' : '500'};
-    font-size: 14px;
-    white-space: nowrap;
-    
-    ${props => props.$collapsed && 'display: none;'}
-  }
-`;
-
-const SubMenuItem = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 8px 20px 8px 52px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 13px;
-  color: #666;
-  
-  &:hover {
-    background: #f8f9fa;
-    color: #ff7a00;
-  }
-  
-  &.active {
-    background: #fff5eb;
-    color: #ff7a00;
-    font-weight: 600;
-  }
-  
-  ${props => props.$collapsed && 'display: none;'}
-`;
 
 const TopNavigation = styled.div`
   display: flex;
@@ -235,28 +103,6 @@ const TopBarLogo = styled.div`
   span {
     color: #ff7a00;
   }
-`;
-
-const MobileMenuButton = styled.button`
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  
-  @media (max-width: 768px) {
-    display: flex;
-  }
-  
-  svg {
-    width: 24px;
-    height: 24px;
-    color: #666;
-  }
-`;
-
-const Spacer = styled.div`
-  flex: 1;
 `;
 
 const RightSection = styled.div`
