@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import styled from "styled-components";
 
-import { Plus } from "lucide-react";
+import { Plus, X, Wifi, WifiOff, Battery, MapPin } from "lucide-react";
 
 
 
@@ -98,6 +98,24 @@ const RegisteredDevices = () => {
 
   );
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const [devicesList, setDevicesList] = useState(devices);
+
+  const [newDevice, setNewDevice] = useState({
+
+    id: '',
+
+    location: '',
+
+    type: 'Static QR Pro',
+
+    battery: 100,
+
+    image: ''
+
+  });
+
 
 
   const handleToggle = (deviceId) => {
@@ -109,6 +127,67 @@ const RegisteredDevices = () => {
       [deviceId]: !prev[deviceId]
 
     }));
+
+  };
+
+
+
+  // Calculate offline devices count dynamically
+  const offlineDevicesCount = Object.values(deviceStatuses).filter(isOnline => !isOnline).length;
+
+
+
+  const handleAddDevice = () => {
+
+    if (newDevice.id && newDevice.location) {
+
+      // Create new device object
+      const deviceToAdd = {
+
+        ...newDevice,
+
+        status: 'online',
+
+        ping: 'Just now'
+
+      };
+
+
+
+      // Add to devices list
+      setDevicesList(prev => [...prev, deviceToAdd]);
+
+      
+
+      // Add to device statuses
+      setDeviceStatuses(prev => ({
+
+        ...prev,
+
+        [newDevice.id]: true
+
+      }));
+
+
+
+      // Reset form and close dialog
+      setIsDialogOpen(false);
+
+      setNewDevice({
+
+        id: '',
+
+        location: '',
+
+        type: 'Static QR Pro',
+
+        battery: 100,
+
+        image: ''
+
+      });
+
+    }
 
   };
 
@@ -132,7 +211,7 @@ const RegisteredDevices = () => {
 
 
 
-        <AddButton>
+        <AddButton onClick={() => setIsDialogOpen(true)}>
 
           <Plus size={16} /> Add New Device
 
@@ -150,7 +229,7 @@ const RegisteredDevices = () => {
 
           <label>Total Devices</label>
 
-          <h3>24</h3>
+          <h3>{devicesList.length}</h3>
 
         </StatCard>
 
@@ -160,7 +239,7 @@ const RegisteredDevices = () => {
 
           <label>Online</label>
 
-          <h3 className="green">21 •</h3>
+          <h3 className="green">{Object.values(deviceStatuses).filter(isOnline => isOnline).length} •</h3>
 
         </StatCard>
 
@@ -170,7 +249,7 @@ const RegisteredDevices = () => {
 
           <label>Low Battery</label>
 
-          <h3 className="orange">3</h3>
+          <h3 className="orange">{devicesList.filter(device => device.battery < 20).length}</h3>
 
         </StatCard>
 
@@ -180,7 +259,7 @@ const RegisteredDevices = () => {
 
           <label>Offline</label>
 
-          <h3>0</h3>
+          <h3>{offlineDevicesCount}</h3>
 
         </StatCard>
 
@@ -192,7 +271,7 @@ const RegisteredDevices = () => {
 
       <CardGrid>
 
-        {devices.map((device) => (
+        {devicesList.map((device) => (
 
           <DeviceCard key={device.id} $isOnline={deviceStatuses[device.id] ? 'online' : 'offline'}>
 
@@ -240,7 +319,7 @@ const RegisteredDevices = () => {
 
 
 
-              <Battery>
+              <BatterySection>
 
                 <span>Battery Level</span>
 
@@ -252,7 +331,7 @@ const RegisteredDevices = () => {
 
                 <small>{device.battery}%</small>
 
-              </Battery>
+              </BatterySection>
 
 
 
@@ -380,7 +459,97 @@ const RegisteredDevices = () => {
 
       </TableSection>
 
-
+      {isDialogOpen && (
+        <DialogOverlay onClick={() => setIsDialogOpen(false)}>
+          <DialogContent onClick={(e) => e.stopPropagation()}>
+            <DialogHeader>
+              <h3>Add New Device</h3>
+              <CloseButton onClick={() => setIsDialogOpen(false)}>
+                <X size={20} />
+              </CloseButton>
+            </DialogHeader>
+            
+            <Form>
+              <FormGroup>
+                <label>Device ID</label>
+                <input
+                  type="text"
+                  placeholder="e.g., MC-1234"
+                  value={newDevice.id}
+                  onChange={(e) => setNewDevice({...newDevice, id: e.target.value})}
+                />
+              </FormGroup>
+              
+              <FormGroup>
+                <label>Location</label>
+                <input
+                  type="text"
+                  placeholder="e.g., Main Branch · Counter 01"
+                  value={newDevice.location}
+                  onChange={(e) => setNewDevice({...newDevice, location: e.target.value})}
+                />
+              </FormGroup>
+              
+              <FormGroup>
+                <label>Device Type</label>
+                <select
+                  value={newDevice.type}
+                  onChange={(e) => setNewDevice({...newDevice, type: e.target.value})}
+                >
+                  <option value="Static QR Pro">Static QR Pro</option>
+                  <option value="Basic Display">Basic Display</option>
+                  <option value="Smart Voice Pro">Smart Voice Pro</option>
+                </select>
+              </FormGroup>
+              
+              <FormGroup>
+              <label>Device Image</label>
+              <ImageUpload>
+                <ImagePreview src={newDevice.image || '/device-placeholder.png'} alt="Device preview" />
+                <ImageInput
+                  id="device-image-input"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setNewDevice({...newDevice, image: reader.result});
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                />
+                <UploadButton as="label" htmlFor="device-image-input">
+                  Choose Image
+                </UploadButton>
+              </ImageUpload>
+            </FormGroup>
+            
+            <FormGroup>
+              <label>Battery Level (%)</label>
+              <input
+                type="number"
+                min="0"
+                max="100"
+                value={newDevice.battery}
+                onChange={(e) => setNewDevice({...newDevice, battery: parseInt(e.target.value) || 0})}
+              />
+            </FormGroup>
+            </Form>
+            
+            <DialogActions>
+              <CancelButton onClick={() => setIsDialogOpen(false)}>
+                Cancel
+              </CancelButton>
+              <AddDeviceButton onClick={handleAddDevice}>
+                Add Device
+              </AddDeviceButton>
+            </DialogActions>
+          </DialogContent>
+        </DialogOverlay>
+      )}
 
     </Container>
 
@@ -750,7 +919,7 @@ const Toggle = styled.label`
 
 
 
-const Battery = styled.div`
+const BatterySection = styled.div`
 
 margin-top:12px;
 
@@ -957,5 +1126,331 @@ border-radius:8px;
 font-size: 14px;
 
 font-weight: 600;
+
+`;
+
+
+
+// Dialog Styles
+const DialogOverlay = styled.div`
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 1000;
+
+`;
+
+
+
+const DialogContent = styled.div`
+
+  background: white;
+
+  border-radius: 16px;
+
+  width: 90%;
+
+  max-width: 500px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+`;
+
+
+
+const DialogHeader = styled.div`
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 24px 24px 16px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  
+
+  h3 {
+
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 600;
+
+    color: #1a1a1a;
+
+  }
+
+`;
+
+
+
+const CloseButton = styled.button`
+
+  background: none;
+
+  border: none;
+
+  cursor: pointer;
+
+  padding: 4px;
+
+  border-radius: 4px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #666;
+
+  transition: background 0.2s;
+
+  
+
+  &:hover {
+
+    background: #f3f4f6;
+
+  }
+
+`;
+
+
+
+const Form = styled.form`
+
+  padding: 24px;
+
+`;
+
+
+
+const FormGroup = styled.div`
+
+  margin-bottom: 20px;
+
+  
+
+  label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #374151;
+
+  }
+
+  
+
+  input, select {
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+
+    transition: border-color 0.2s;
+
+    box-sizing: border-box;
+
+    
+
+    &:focus {
+
+      outline: none;
+
+      border-color: #ff7a00;
+
+    }
+
+  }
+
+`;
+
+
+
+const DialogActions = styled.div`
+
+  display: flex;
+
+  gap: 12px;
+
+  justify-content: flex-end;
+
+  padding: 16px 24px 24px;
+
+  border-top: 1px solid #e5e7eb;
+
+`;
+
+
+
+const CancelButton = styled.button`
+
+  padding: 10px 20px;
+
+  border: 1px solid #d1d5db;
+
+  background: white;
+
+  color: #374151;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  
+
+  &:hover {
+
+    background: #f9fafb;
+
+  }
+
+`;
+
+
+
+const AddDeviceButton = styled.button`
+
+  padding: 10px 20px;
+
+  border: none;
+
+  background: #ff7a00;
+
+  color: white;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  
+
+  &:hover {
+
+    background: #e66a00;
+
+  }
+
+`;
+
+
+
+// Image Upload Styles
+const ImageUpload = styled.div`
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 12px;
+
+`;
+
+
+
+const ImagePreview = styled.img`
+
+  width: 120px;
+
+  height: 120px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+
+  border: 2px solid #e5e7eb;
+
+  background: #f9fafb;
+
+`;
+
+
+
+const ImageInput = styled.input`
+
+  display: none;
+
+`;
+
+
+
+const UploadButton = styled.button`
+
+  padding: 8px 16px;
+
+  border: 1px solid #d1d5db;
+
+  background: white;
+
+  color: #374151;
+
+  border-radius: 6px;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  
+
+  &:hover {
+
+    background: #f9fafb;
+
+    border-color: #ff7a00;
+
+  }
 
 `;

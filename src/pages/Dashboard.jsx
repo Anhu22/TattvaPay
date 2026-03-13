@@ -2,35 +2,39 @@ import styled from "styled-components";
 import { useState } from "react";
 import { 
   TrendingUp, 
+  TrendingDown, 
+  CreditCard, 
   Clock, 
+  RefreshCw, 
+  AlertCircle,
   QrCode,
   Plus,
   Download,
   HelpCircle,
+  ChevronUp,
+  ChevronDown,
+  Search,
+  Filter,
+  MoreVertical,
+  ArrowUpRight,
+  Users,
+  Wallet,
+  DollarSign,
   CheckCircle,
   XCircle
 } from "lucide-react";
 
-// Main container - truly full screen
 const Container = styled.div`
-  position: fixed;
-  top: 40px;
-  left: 20px;
-  right: 40px;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #f8f9fa;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 `;
 
-// Scrollable content area
-const ScrollableContent = styled.div`
+const ContentWrapper = styled.div`
   flex: 1;
-  overflow-y: auto;
   padding: 30px 40px;
   
   @media (max-width: 768px) {
@@ -42,7 +46,7 @@ const DashboardTitle = styled.h2`
   font-size: 42px;
   font-weight: 700;
   color: #333;
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 `;
 
 const StatsGrid = styled.div`
@@ -126,6 +130,12 @@ const SectionHeader = styled.div`
     color: #333;
     margin: 0;
   }
+`;
+
+const Subtext = styled.p`
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 12px;
 `;
 
 const Tabs = styled.div`
@@ -321,31 +331,32 @@ const StatusBadge = styled.span`
 `;
 
 const Footer = styled.footer`
-  background: #ffffff;
+  margin-top: 40px;
+  padding: 30px 40px 20px;
   border-top: 2px solid #e5e7eb;
-  padding: 20px 40px;
-  flex-shrink: 0;
+  background: #ffffff;
   
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 30px 20px 20px;
   }
 `;
 
 const FooterContent = styled.div`
-  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 `;
 
 const CompanyName = styled.div`
   font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 `;
 
 const FooterLinks = styled.div`
   display: flex;
   gap: 24px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
   
   a {
@@ -377,7 +388,7 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <ScrollableContent>
+      <ContentWrapper>
         <DashboardTitle>Dashboard</DashboardTitle>
         
         <StatsGrid>
@@ -487,18 +498,18 @@ const Dashboard = () => {
             </tbody>
           </Table>
         </TableContainer>
-      </ScrollableContent>
+      </ContentWrapper>
 
       <Footer>
         <FooterContent>
-          <CompanyName>TATTVAMPAY</CompanyName>
+          <CompanyName>MADHU CREATIONS</CompanyName>
           <FooterLinks>
             <a href="#">Documentation</a>
             <a href="#">API References</a>
             <a href="#">Terms</a>
             <a href="#">Support</a>
           </FooterLinks>
-          <Copyright>© 2024 TATTVAMPAY HARDWARE SYSTEMS. All rights reserved.</Copyright>
+          <Copyright>© 2024 TattvamPay HARDWARE SYSTEMS. All rights reserved.</Copyright>
         </FooterContent>
       </Footer>
     </Container>

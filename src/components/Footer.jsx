@@ -4,12 +4,16 @@ const Foot = styled.footer`
   background:#111;
   color:white;
   text-align:center;
-  padding:60px 40px;
+  padding:40px 20px;
   
   h3 {
     font-size:24px;
-    font-weight:700;
-    margin-bottom:12px;
+    margin-bottom:10px;
+    color:white;
+    
+    span {
+      color: #ff7a00;
+    }
   }
   
   p {
@@ -21,7 +25,7 @@ const Foot = styled.footer`
 const Footer = () => {
   return (
     <Foot>
-      <h3>TATTVAMPAY</h3>
+      <h3>TATTVAM<span>PAY</span></h3>
       <p>Simple payment solutions for modern businesses.</p>
     </Foot>
   );

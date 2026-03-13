@@ -517,10 +517,10 @@ export default function Settlements() {
             <Plus />
             New Settlement
           </ActionButton>
-          <ActionButton>
+          {/*<ActionButton>
             <Settings />
             Settings
-          </ActionButton>
+          </ActionButton>*/}
         </HeaderActions>
       </Header>
 

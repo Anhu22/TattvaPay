@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { 
   User,
@@ -603,16 +603,32 @@ const ProfileSecurityDescription = styled.p`
 const SettingsPage = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const [profileData, setProfileData] = useState({
-    fullName: 'TattvamPay Admin',
-    shopName: 'TattvamPay',
-    email: 'contact@tattvampay.com',
-    mobile: '+91 98765 43210'
+    fullName: '',
+    shopName: '',
+    email: '',
+    mobile: ''
   });
+  
+  // Load user data from localStorage on component mount
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('tattvamPayCurrentUser') || '{}');
+    if (currentUser.isLoggedIn && currentUser.fullName) {
+      setProfileData({
+        fullName: currentUser.fullName || '',
+        shopName: currentUser.shopName || '',
+        email: currentUser.email || '',
+        mobile: currentUser.phone || ''
+      });
+    }
+  }, []);
   
   const [twoFactorMethods, setTwoFactorMethods] = useState({
     sms: true,
     authenticatorApp: false
   });
+  
+  // Main two-factor authentication toggle state
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
   
   // Bank settings state
   const [autoSettlements, setAutoSettlements] = useState(true);
@@ -742,7 +758,7 @@ const SettingsPage = () => {
                 </div>
                 <ProfileInfoRow>
                   <BankName><CreditCard style={{ width: '16px', height: '16px', marginRight: '8px' }} />HDFC Bank</BankName>
-                  <AccountName>TATTVAMPAY</AccountName>
+                  <AccountName>TattvamPay</AccountName>
                 </ProfileInfoRow>
                 
                 <ProfileSaveButton>Update Bank Details</ProfileSaveButton>
@@ -766,7 +782,14 @@ const SettingsPage = () => {
                 <ProfileSecurityItem>
                   <ProfileSecurityHeader>
                     <ProfileSecurityTitle><Key style={{ width: '16px', height: '16px', marginRight: '8px' }} />Two-factor Authentication</ProfileSecurityTitle>
-                    <SecurityButton>Enable</SecurityButton>
+                    <Toggle>
+                      <ToggleInput 
+                        type="checkbox" 
+                        checked={twoFactorEnabled}
+                        onChange={() => setTwoFactorEnabled(!twoFactorEnabled)}
+                      />
+                      <ToggleSlider />
+                    </Toggle>
                   </ProfileSecurityHeader>
                   <ProfileSecurityDescription>
                     Add an extra layer of security to your merchant account
@@ -785,7 +808,7 @@ const SettingsPage = () => {
                 <AccountHeader>
                   <BankDetails>
                     <BankName><CreditCard style={{ width: '16px', height: '16px', marginRight: '8px' }} />HDFC Bank</BankName>
-                    <AccountName>TATTVAMPAY</AccountName>
+                    <AccountName>TattvamPay</AccountName>
                   </BankDetails>
                   <ChangeLink>Change</ChangeLink>
                 </AccountHeader>

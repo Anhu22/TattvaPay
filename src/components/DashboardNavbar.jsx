@@ -173,7 +173,7 @@ const DashboardNavbar = () => {
   return (
     <Nav>
       <LeftSection>
-        <Logo>TATTVAM <span>PAY</span></Logo>
+        <Logo>Tattvam<span>Pay</span></Logo>
       </LeftSection>
 
       <RightSection>
@@ -187,7 +187,7 @@ const DashboardNavbar = () => {
         <UserSection>
           <UserAvatar>VY</UserAvatar>
           <UserInfo>
-            <span className="name">Va yashodary</span>
+            <span className="name">Vayashodary</span>
             <span className="role">Business Owner</span>
           </UserInfo>
         </UserSection>

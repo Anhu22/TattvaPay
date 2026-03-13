@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 // Main container - full screen with centered content
@@ -29,6 +29,27 @@ const LoginCard = styled.div`
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   padding: 48px 40px;
+  max-height: 90vh;
+  overflow-y: auto;
+  
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #ff7a00;
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #e66a00;
+  }
 `;
 
 const Logo = styled.div`
@@ -40,6 +61,10 @@ const Logo = styled.div`
     font-weight: 700;
     margin: 0 0 4px 0;
     color: #000;
+    
+    span {
+      color: #ff7a00;
+    }
   }
   
   p {
@@ -288,6 +313,14 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
+  // Check if user is already logged in
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('tattvamPayCurrentUser') || '{}');
+    if (currentUser.isLoggedIn) {
+      window.location.href = '/dashboard';
+    }
+  }, []);
+  
   // Login form state
   const [loginForm, setLoginForm] = useState({
     email: '',
@@ -349,8 +382,31 @@ const LoginPage = () => {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      if (loginForm.email === 'demo@tattvampay.com' && loginForm.password === 'password') {
-        alert('Login successful! Redirecting to dashboard...');
+      
+      // Get stored users from localStorage
+      const storedUsers = JSON.parse(localStorage.getItem('tattvamPayUsers') || '[]');
+      
+      // Find user with matching email and password
+      const authenticatedUser = storedUsers.find(user => 
+        user.email === loginForm.email && user.password === loginForm.password
+      );
+      
+      if (authenticatedUser) {
+        // Store current user session
+        localStorage.setItem('tattvamPayCurrentUser', JSON.stringify({
+          fullName: authenticatedUser.fullName,
+          shopName: authenticatedUser.shopName,
+          email: authenticatedUser.email,
+          phone: authenticatedUser.phone,
+          isLoggedIn: true
+        }));
+        
+        setSuccess('Login successful! Redirecting to dashboard...');
+        
+        // Redirect to dashboard after 1 second
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 1000);
       } else {
         setError('Invalid email or password');
       }
@@ -393,7 +449,31 @@ const LoginPage = () => {
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
-      setSuccess('Account created successfully! Please check your email to verify.');
+      
+      // Store user details in localStorage
+      const userData = {
+        fullName: registerForm.fullName,
+        shopName: registerForm.shopName,
+        email: registerForm.email,
+        phone: registerForm.phone,
+        password: registerForm.password, // In production, this should be hashed
+        createdAt: new Date().toISOString()
+      };
+      
+      // Get existing users or create new array
+      const existingUsers = JSON.parse(localStorage.getItem('tattvamPayUsers') || '[]');
+      
+      // Check if email already exists
+      if (existingUsers.find(user => user.email === registerForm.email)) {
+        setError('An account with this email already exists');
+        return;
+      }
+      
+      // Add new user
+      existingUsers.push(userData);
+      localStorage.setItem('tattvamPayUsers', JSON.stringify(existingUsers));
+      
+      setSuccess('Account created successfully! You can now login.');
       
       // Reset form
       setRegisterForm({
@@ -418,7 +498,7 @@ const LoginPage = () => {
     <LoginContainer>
       <LoginCard>
         <Logo>
-          <h1>TATTVAMPAY</h1>
+          <h1>Tattvam<span>Pay</span></h1>
           <p>Merchant Dashboard</p>
         </Logo>
         

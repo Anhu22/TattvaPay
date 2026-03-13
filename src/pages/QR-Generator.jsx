@@ -343,7 +343,7 @@ export default function DynamicQRPage() {
 
       <Footer>
         <FooterContent>
-          <span>2024 TATTVAMPAY SYSTEMS.</span>
+          <span>2024 TattvamPay SYSTEMS.</span>
           <StatusIndicator>
             <StatusDot /> System Online • Real-time Sync
           </StatusIndicator>

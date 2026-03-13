@@ -16,6 +16,10 @@ const Nav = styled.nav`
 
 const Logo = styled.h2`
   font-weight:700;
+  
+  span {
+    color: #ff7a00;
+  }
 `;
 
 const Links = styled.div`
@@ -61,7 +65,7 @@ const Navbar = () => {
 
   return (
     <Nav>
-      <Logo>TATTVAMPAY</Logo>
+      <Logo>Tattvam<span>Pay</span></Logo>
 
       <Links>
         <a href="#features">Features</a>

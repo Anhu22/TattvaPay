@@ -23,6 +23,10 @@ const Header = styled.div`
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 8px;
+    
+    span {
+      color: #ff7a00;
+    }
   }
 `;
 
@@ -350,7 +354,7 @@ const Invoice = () => {
   return (
     <Container>
       <Header>
-        <h1>TATTVAMPAY</h1>
+        <h1>TATTVAM<span>PAY</span></h1>
         <EditIndicator>✎ Edit Mode</EditIndicator>
       </Header>
       

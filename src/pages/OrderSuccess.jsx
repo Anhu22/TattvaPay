@@ -22,6 +22,10 @@ const Header = styled.div`
     color: #1a1a1a;
     margin-bottom: 16px;
     letter-spacing: -0.5px;
+    
+    span {
+      color: #ff7a00;
+    }
   }
 `;
 
@@ -270,7 +274,7 @@ const OrderSuccess = () => {
   return (
     <Container>
       <Header>
-        <h1>TATTVAMPAY</h1>
+        <h1>TATTVAM<span>PAY</span></h1>
       </Header>
 
       <SuccessIcon>

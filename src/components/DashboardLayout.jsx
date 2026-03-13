@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   Home,  
@@ -92,13 +92,8 @@ const TopBarLeft = styled.div`
   gap: 32px;
 `;
 
-const TopBarLogo = styled.div`
-  font-size: 20px;
-  font-weight: 700;
-  color: #1a1a1a;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+const TopBarLogo = styled.h2`
+  font-weight:700;
   
   span {
     color: #ff7a00;
@@ -203,6 +198,36 @@ const ContentArea = styled.div`
 const DashboardLayout = ({ children }) => {
   const navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState('dashboard');
+  
+  // Get user data from localStorage
+  const [user, setUser] = useState({
+    name: 'User',
+    initials: 'U',
+    role: 'Business Owner'
+  });
+  
+  // Function to generate initials from name
+  const getInitials = (name) => {
+    if (!name) return 'U';
+    const words = name.split(' ');
+    if (words.length >= 2) {
+      return words[0][0].toUpperCase() + words[1][0].toUpperCase();
+    } else {
+      return name.substring(0, 2).toUpperCase();
+    }
+  };
+  
+  // Load user data from localStorage on component mount
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('tattvamPayCurrentUser') || '{}');
+    if (currentUser.isLoggedIn && currentUser.fullName) {
+      setUser({
+        name: currentUser.fullName,
+        initials: getInitials(currentUser.fullName),
+        role: 'Business Owner' // You can store role in localStorage too if needed
+      });
+    }
+  }, []);
 
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
@@ -237,7 +262,7 @@ const DashboardLayout = ({ children }) => {
       <TopBar>
         <TopBarLeft>
           <TopBarLogo>
-            TATTVAM <span>PAY</span>
+            Tattvam<span>Pay</span>
           </TopBarLogo>
           
           <TopNavigation>
@@ -305,10 +330,10 @@ const DashboardLayout = ({ children }) => {
           </IconButton>
           
           <UserSection>
-            <UserAvatar>VY</UserAvatar>
+            <UserAvatar>{user.initials}</UserAvatar>
             <UserInfo>
-              <span className="name">Va yashodary</span>
-              <span className="role">Business Owner</span>
+              <span className="name">{user.name}</span>
+              <span className="role">{user.role}</span>
             </UserInfo>
           </UserSection>
         </RightSection>

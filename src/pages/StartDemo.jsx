@@ -11,7 +11,7 @@ const LandingPage = () => {
           <Tag>PERSONALIZED EXPERIENCE</Tag>
 
           <Heading>
-            See TATTVAMPAY <br />
+            See TattvamPay <br />
             CREATIONS <span>in</span> <br />
             <Highlight>Action</Highlight>
           </Heading>
