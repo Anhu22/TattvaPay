@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { QrCode } from "lucide-react";
+import { useNavigate } from "react-router-dom";   
 
 const HeroSection = styled.section`
   display: flex;
@@ -241,6 +242,10 @@ const CompanyName = styled.div`
 `;
 
 const Hero = () => {
+  const navigate = useNavigate();
+  const handleBuyDevice = () => {
+    navigate('/buynow');
+  };
   return (
     <HeroSection>
       <Left>
@@ -251,8 +256,8 @@ const Hero = () => {
         </p>
 
         <ButtonGroup>
-          <PrimaryButton>Buy Device</PrimaryButton>
-          <SecondaryButton>Request Demo</SecondaryButton>
+          <PrimaryButton onClick={handleBuyDevice}>Buy Device</PrimaryButton>
+          <SecondaryButton><a href="#demo">Request Demo</a></SecondaryButton>
         </ButtonGroup>
         
         <p>Used by 5,000+ local business</p>
