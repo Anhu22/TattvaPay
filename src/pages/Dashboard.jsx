@@ -460,7 +460,7 @@ const Dashboard = () => {
               <p>Our dedicated support team is available 24/7 for any payment issues.</p>
             </div>
           </HelpContent>
-          <HelpButton>Contact Support</HelpButton>
+          <HelpButton>Contact Us</HelpButton>
         </HelpCard>
 
         <SectionHeader>
