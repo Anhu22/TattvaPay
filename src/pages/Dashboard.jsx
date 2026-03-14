@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -181,6 +182,11 @@ const QuickActionCard = styled.div`
     background: #fff5eb;
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+  
+  &:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
   
   svg {
@@ -378,6 +384,7 @@ const Copyright = styled.div`
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('daily');
+  const navigate = useNavigate();
   
   const transactions = [
     { id: '#MC-TXN-98421', amount: '₹1,250.00', method: 'PhonePe UPI', datetime: 'Oct 24, 2023 - 10:40 AM', status: 'Success' },
@@ -389,7 +396,7 @@ const Dashboard = () => {
   return (
     <Container>
       <ContentWrapper>
-        <DashboardTitle>Dashboard</DashboardTitle>
+        {/*<DashboardTitle>Dashboard</DashboardTitle>*/}
         
         <StatsGrid>
           <StatCard>
@@ -433,19 +440,19 @@ const Dashboard = () => {
         </SectionHeader>
 
         <QuickActionsGrid>
-          <QuickActionCard>
+          <QuickActionCard onClick={() => navigate('/qr-generator')}>
             <QrCode />
             <h4>Generate Dynamic QR Code</h4>
             <p>Create a one-time payment code for customers</p>
           </QuickActionCard>
 
-          <QuickActionCard>
+          <QuickActionCard onClick={() => navigate('/devices')}>
             <Plus />
             <h4>Add New Device</h4>
             <p>Register new QR hardware to your account</p>
           </QuickActionCard>
 
-          <QuickActionCard>
+          <QuickActionCard onClick={() => navigate('/settlements')}>
             <Download />
             <h4>Download Report</h4>
             <p>Export settlement history as PDF or CSV</p>
