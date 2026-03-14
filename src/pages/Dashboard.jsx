@@ -396,7 +396,7 @@ const Dashboard = () => {
   return (
     <Container>
       <ContentWrapper>
-        {/*<DashboardTitle>Dashboard</DashboardTitle>*/}
+        <DashboardTitle>Dashboard</DashboardTitle>
         
         <StatsGrid>
           <StatCard>

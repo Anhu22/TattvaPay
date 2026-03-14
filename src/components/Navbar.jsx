@@ -71,7 +71,7 @@ const Navbar = () => {
         <a href="#features">Features</a>
         <a href="#steps">How it works</a>
         <a href="#demo">Live Demo</a>
-        <a href="/dashboard">Dashboard</a>
+        {/*<a href="/dashboard">Dashboard</a>*/}
       </Links>
 
       <Buttons>
