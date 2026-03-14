@@ -50,6 +50,24 @@ const LoginCard = styled.div`
   &::-webkit-scrollbar-thumb:hover {
     background: #e66a00;
   }
+  
+  @media (max-width: 768px) {
+    max-width: 90%;
+    padding: 40px 30px;
+    margin: 0 20px;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 95%;
+    padding: 30px 20px;
+    margin: 0 10px;
+    border-radius: 16px;
+  }
+  
+  @media (max-width: 360px) {
+    padding: 25px 15px;
+    margin: 0 5px;
+  }
 `;
 
 const Logo = styled.div`

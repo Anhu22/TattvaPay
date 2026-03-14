@@ -578,7 +578,14 @@ const Container = styled.div`
   background:#f6f6f6;
 
   font-family:Inter;
-
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 15px;
+  }
 `;
 
 
@@ -592,6 +599,17 @@ justify-content:space-between;
 align-items:center;
 
 margin-bottom:30px;
+
+@media (max-width: 768px) {
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+@media (max-width: 480px) {
+  margin-bottom: 20px;
+  gap: 15px;
+}
 
 `;
 
@@ -607,6 +625,14 @@ font-weight: 700;
 
 margin:0;
 
+@media (max-width: 768px) {
+  font-size: 32px;
+}
+
+@media (max-width: 480px) {
+  font-size: 28px;
+}
+
 }
 
 
@@ -618,6 +644,14 @@ color:#777;
 margin-top:5px;
 
 font-size: 18px;
+
+@media (max-width: 768px) {
+  font-size: 16px;
+}
+
+@media (max-width: 480px) {
+  font-size: 14px;
+}
 
 }
 
@@ -649,6 +683,17 @@ font-size: 16px;
 
 font-weight: 600;
 
+@media (max-width: 768px) {
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  padding: 8px 12px;
+  font-size: 13px;
+  gap: 6px;
+}
+
 `;
 
 
@@ -658,6 +703,20 @@ const StatsRow = styled.div`
 display:grid;
 
 grid-template-columns:repeat(4,1fr);
+
+gap:20px;
+
+margin-bottom:30px;
+
+@media (max-width: 1200px) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 768px) {
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
 
 gap:20px;
 
@@ -729,6 +788,23 @@ gap:25px;
 
 margin-bottom:40px;
 
+@media (max-width: 1200px) {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 480px) {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
 `;
 
 
@@ -748,6 +824,15 @@ filter: ${props => props.$isOnline === 'online' ? 'none' : 'grayscale(100%)'};
 opacity: ${props => props.$isOnline === 'online' ? '1' : '0.7'};
 
 transition: filter 0.3s ease, opacity 0.3s ease;
+
+@media (max-width: 768px) {
+  padding: 20px;
+}
+
+@media (max-width: 480px) {
+  padding: 16px;
+  border-radius: 12px;
+}
 
 `;
 

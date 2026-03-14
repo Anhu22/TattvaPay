@@ -16,6 +16,16 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    top: 60px;
+    height: calc(100vh - 60px);
+  }
+  
+  @media (max-width: 480px) {
+    top: 50px;
+    height: calc(100vh - 50px);
+  }
 `;
 
 // Scrollable content area
@@ -26,6 +36,10 @@ const ScrollableContent = styled.div`
   
   @media (max-width: 768px) {
     padding: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 15px;
   }
 `;
 

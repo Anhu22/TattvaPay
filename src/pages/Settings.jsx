@@ -33,6 +33,10 @@ const SettingsContainer = styled.div`
   width: 100%;
   background: #ffffff;
   display: flex;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 // Sidebar
@@ -41,28 +45,51 @@ const Sidebar = styled.div`
   background: #f9fafb;
   border-right: 1px solid #e5e7eb;
   padding: 30px 0;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 20px 0;
+  }
 `;
 
 const SidebarHeader = styled.div`
   padding: 0 24px 24px 24px;
   border-bottom: 1px solid #e5e7eb;
   
+  @media (max-width: 768px) {
+    padding: 0 20px 20px 20px;
+  }
+  
   h2 {
     font-size: 20px;
     font-weight: 600;
     margin: 0 0 4px 0;
     color: #000;
+    
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
   }
   
   p {
     font-size: 14px;
     color: #666;
     margin: 0;
+    
+    @media (max-width: 768px) {
+      font-size: 13px;
+    }
   }
 `;
 
 const SidebarMenu = styled.div`
   padding: 24px;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const MenuItem = styled.div`
@@ -78,9 +105,27 @@ const MenuItem = styled.div`
   cursor: pointer;
   box-shadow: ${props => props.active ? '0 2px 8px rgba(0,0,0,0.05)' : 'none'};
   
+  @media (max-width: 768px) {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  
   svg {
     width: 18px;
     height: 18px;
+    
+    @media (max-width: 768px) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  
+  span {
+    font-size: 14px;
+    
+    @media (max-width: 768px) {
+      font-size: 13px;
+    }
   }
   
   &:hover {
@@ -94,6 +139,14 @@ const MainContent = styled.div`
   overflow-y: auto;
   padding: 40px;
   background: #ffffff;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 15px;
+  }
 `;
 
 const ContentWrapper = styled.div`

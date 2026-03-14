@@ -14,6 +14,10 @@ const LayoutContainer = styled.div`
   display: flex;
   min-height: 100vh;
   background: #f8f9fc;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 
@@ -21,6 +25,15 @@ const TopNavigation = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 2px;
+  }
 `;
 
 const NavItem = styled.button`
@@ -36,6 +49,18 @@ const NavItem = styled.button`
   color: #666;
   transition: all 0.3s ease;
   position: relative;
+  
+  @media (max-width: 768px) {
+    padding: 6px 12px;
+    font-size: 13px;
+    gap: 6px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 4px 8px;
+    font-size: 12px;
+    gap: 4px;
+  }
   
   &:hover {
     background: #f8f9fa;
@@ -56,6 +81,11 @@ const NavItem = styled.button`
       height: 3px;
       background: #ff7a00;
       border-radius: 2px;
+      
+      @media (max-width: 768px) {
+        bottom: -4px;
+        height: 2px;
+      }
     }
   }
   
@@ -69,6 +99,14 @@ const MainContent = styled.div`
   flex: 1;
   padding-top: 70px;
   min-height: 100vh;
+  
+  @media (max-width: 768px) {
+    padding-top: 60px;
+  }
+  
+  @media (max-width: 480px) {
+    padding-top: 50px;
+  }
 `;
 
 const TopBar = styled.div`
@@ -84,19 +122,46 @@ const TopBar = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
+  
+  @media (max-width: 768px) {
+    height: 60px;
+    padding: 0 16px;
+  }
+  
+  @media (max-width: 480px) {
+    height: 50px;
+    padding: 0 12px;
+  }
 `;
 
 const TopBarLeft = styled.div`
   display: flex;
   align-items: center;
   gap: 32px;
+  
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
 `;
 
 const TopBarLogo = styled.h2`
   font-weight:700;
+  font-size: 20px;
   
   span {
     color: #ff7a00;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 16px;
   }
 `;
 

@@ -48,6 +48,14 @@ const DashboardTitle = styled.h2`
   font-weight: 700;
   color: #333;
   margin-bottom: 20px;
+  
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
 `;
 
 const StatsGrid = styled.div`
@@ -283,12 +291,21 @@ const TableContainer = styled.div`
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  
+  @media (max-width: 768px) {
+    margin: 20px 0;
+  }
 `;
 
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   min-width: 800px;
+  
+  @media (max-width: 768px) {
+    min-width: 600px;
+    font-size: 14px;
+  }
 `;
 
 const Th = styled.th`
@@ -297,6 +314,12 @@ const Th = styled.th`
   color: #666;
   font-weight: 600;
   font-size: 15px;
+  
+  @media (max-width: 768px) {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
+  
   border-bottom: 2px solid #f0f0f0;
   background: #f9fafb;
 `;
@@ -306,6 +329,11 @@ const Td = styled.td`
   border-bottom: 1px solid #f0f0f0;
   color: #1a1a1a;
   font-size: 15px;
+  
+  @media (max-width: 768px) {
+    padding: 12px 15px;
+    font-size: 14px;
+  }
 `;
 
 const StatusBadge = styled.span`
