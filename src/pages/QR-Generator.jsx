@@ -68,7 +68,7 @@ const MainContainer = styled.div`
   /* Mobile portrait */
   @media (max-width: 768px) and (orientation: portrait) {
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
     align-items: center;
     padding: 0 15px;
   }
@@ -76,7 +76,7 @@ const MainContainer = styled.div`
   /* Small mobile portrait */
   @media (max-width: 600px) and (orientation: portrait) {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
     padding: 0 10px;
   }
@@ -84,7 +84,7 @@ const MainContainer = styled.div`
   /* Very small mobile portrait */
   @media (max-width: 480px) and (orientation: portrait) {
     flex-direction: column;
-    gap: 12px;
+    gap: 18px;
     align-items: center;
     padding: 0 8px;
   }
@@ -146,23 +146,23 @@ const LeftColumn = styled.div`
   /* Mobile portrait */
   @media (max-width: 768px) and (orientation: portrait) {
     width: 100%;
-    max-width: 400px;
-    padding: 25px;
+    max-width: 380px;
+    padding: 22px;
     border-radius: 20px;
   }
   
   /* Small mobile portrait */
   @media (max-width: 600px) and (orientation: portrait) {
     width: 100%;
-    max-width: 350px;
-    padding: 20px;
+    max-width: 320px;
+    padding: 18px;
     border-radius: 18px;
   }
   
   /* Very small mobile portrait */
   @media (max-width: 480px) and (orientation: portrait) {
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     padding: 15px;
     border-radius: 16px;
   }
@@ -437,35 +437,40 @@ const RightColumn = styled.div`
   /* Mobile portrait */
   @media (max-width: 768px) and (orientation: portrait) {
     width: 100%;
-    min-height: 250px;
+    min-height: 350px;
     order: 2;
+    margin-top: 20px;
   }
   
   /* Small mobile portrait */
   @media (max-width: 600px) and (orientation: portrait) {
     width: 100%;
-    min-height: 200px;
+    min-height: 300px;
     order: 2;
+    margin-top: 15px;
   }
   
   /* Very small mobile portrait */
   @media (max-width: 480px) and (orientation: portrait) {
     width: 100%;
-    min-height: 180px;
+    min-height: 280px;
     order: 2;
+    margin-top: 15px;
   }
   
   /* Height-based portrait adjustments */
   @media (max-height: 600px) and (orientation: portrait) {
     width: 100%;
-    min-height: 200px;
+    min-height: 320px;
     order: 2;
+    margin-top: 15px;
   }
   
   @media (max-height: 500px) and (orientation: portrait) {
     width: 100%;
-    min-height: 150px;
+    min-height: 280px;
     order: 2;
+    margin-top: 10px;
   }
 `;
 
@@ -477,41 +482,85 @@ const QRImageContainer = styled.div`
   
   /* Mobile portrait */
   @media (max-width: 768px) and (orientation: portrait) {
-    padding: 10px;
+    padding: 15px;
   }
   
   /* Small mobile portrait */
   @media (max-width: 600px) and (orientation: portrait) {
-    padding: 8px;
+    padding: 12px;
   }
   
   /* Very small mobile portrait */
   @media (max-width: 480px) and (orientation: portrait) {
-    padding: 5px;
+    padding: 10px;
   }
   
   img {
     max-width: 100%;
     height: auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
     
-    /* Mobile portrait */
-    @media (max-width: 768px) and (orientation: portrait) {
-      max-height: 200px;
+    /* Desktop and landscape */
+    @media (min-width: 769px) {
+      max-height: 400px;
       object-fit: contain;
+    }
+    
+    /* Mobile landscape */
+    @media (max-width: 768px) and (orientation: landscape) {
+      max-height: 300px;
+      object-fit: contain;
+    }
+    
+    /* Mobile portrait - Make it much larger! */
+    @media (max-width: 768px) and (orientation: portrait) {
+      max-height: 300px;
+      min-height: 250px;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
     
     /* Small mobile portrait */
     @media (max-width: 600px) and (orientation: portrait) {
-      max-height: 150px;
+      max-height: 280px;
+      min-height: 220px;
+      width: 100%;
       object-fit: contain;
+      border-radius: 18px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
     }
     
     /* Very small mobile portrait */
     @media (max-width: 480px) and (orientation: portrait) {
-      max-height: 120px;
+      max-height: 250px;
+      min-height: 200px;
+      width: 100%;
       object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+    }
+    
+    /* Height-based portrait adjustments */
+    @media (max-height: 600px) and (orientation: portrait) {
+      max-height: 280px;
+      min-height: 230px;
+      width: 100%;
+      object-fit: contain;
+    }
+    
+    @media (max-height: 500px) and (orientation: portrait) {
+      max-height: 240px;
+      min-height: 200px;
+      width: 100%;
+      object-fit: contain;
+    }
+    
+    &:hover {
+      transform: scale(1.02);
     }
   }
 `;
