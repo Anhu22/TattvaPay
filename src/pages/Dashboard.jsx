@@ -68,8 +68,33 @@ const StatsGrid = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
   
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -84,6 +109,24 @@ const StatCard = styled.div`
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    padding: 14px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    padding: 10px;
+    border-radius: 10px;
   }
 `;
 
@@ -175,6 +218,26 @@ const QuickActionsGrid = styled.div`
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 15px 0;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 12px 0;
   }
 `;
 
@@ -197,11 +260,47 @@ const QuickActionCard = styled.div`
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
   
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    padding: 14px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
   svg {
     width: 28px;
     height: 28px;
     color: #ff7a00;
     margin-bottom: 12px;
+    
+    @media (max-width: 768px) {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 8px;
+    }
+    
+    @media (max-width: 480px) {
+      width: 20px;
+      height: 20px;
+      margin-bottom: 6px;
+    }
+    
+    @media (max-height: 600px) and (orientation: portrait) {
+      width: 22px;
+      height: 22px;
+      margin-bottom: 8px;
+    }
   }
   
   h4 {
@@ -209,6 +308,21 @@ const QuickActionCard = styled.div`
     font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 8px;
+    
+    @media (max-width: 768px) {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+    
+    @media (max-height: 600px) and (orientation: portrait) {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
   }
   
   p {
@@ -216,6 +330,18 @@ const QuickActionCard = styled.div`
     font-size: 15px;
     line-height: 1.5;
     margin: 0;
+    
+    @media (max-width: 768px) {
+      font-size: 13px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
+    
+    @media (max-height: 600px) and (orientation: portrait) {
+      font-size: 13px;
+    }
   }
 `;
 

@@ -18,6 +18,14 @@ const LayoutContainer = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
   }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    flex-direction: column;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    flex-direction: column;
+  }
 `;
 
 
@@ -32,6 +40,16 @@ const TopNavigation = styled.div`
   }
   
   @media (max-width: 480px) {
+    gap: 2px;
+  }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    flex-wrap: wrap;
     gap: 2px;
   }
 `;
@@ -107,6 +125,14 @@ const MainContent = styled.div`
   @media (max-width: 480px) {
     padding-top: 50px;
   }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    padding-top: 55px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    padding-top: 45px;
+  }
 `;
 
 const TopBar = styled.div`
@@ -131,6 +157,16 @@ const TopBar = styled.div`
   @media (max-width: 480px) {
     height: 50px;
     padding: 0 12px;
+  }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    height: 55px;
+    padding: 0 14px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    height: 45px;
+    padding: 0 10px;
   }
 `;
 

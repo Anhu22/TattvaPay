@@ -68,6 +68,21 @@ const LoginCard = styled.div`
     padding: 25px 15px;
     margin: 0 5px;
   }
+  
+  @media (max-height: 700px) and (orientation: portrait) {
+    max-height: 95vh;
+    padding: 30px 25px;
+  }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    max-height: 98vh;
+    padding: 25px 20px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    max-height: 100vh;
+    padding: 20px 15px;
+  }
 `;
 
 const Logo = styled.div`

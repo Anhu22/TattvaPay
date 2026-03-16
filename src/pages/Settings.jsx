@@ -147,6 +147,14 @@ const MainContent = styled.div`
   @media (max-width: 480px) {
     padding: 15px;
   }
+  
+  @media (max-height: 600px) and (orientation: portrait) {
+    padding: 25px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    padding: 20px;
+  }
 `;
 
 const ContentWrapper = styled.div`
