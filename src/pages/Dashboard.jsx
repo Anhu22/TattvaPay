@@ -1,6 +1,5 @@
-import styled from "styled-components";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -22,8 +21,18 @@ import {
   Wallet,
   DollarSign,
   CheckCircle,
-  XCircle
+  XCircle,
+  Smartphone,
+  Battery,
+  IndianRupee
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { 
+  DeviceAwareGrid, 
+  DeviceAwareCard, 
+  DeviceAwareButton,
+  DeviceAwareContainer 
+} from '../components/DeviceAwareComponents';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -88,90 +97,92 @@ const DashboardTitle = styled.h2`
   }
 `;
 
-const StatsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 30px;
-  
-  /* Tablet and smaller */
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  /* Mobile landscape */
-  @media (max-width: 768px) and (orientation: landscape) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
-  }
-  
-  /* Mobile portrait */
-  @media (max-width: 768px) and (orientation: portrait) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  
-  /* Small mobile portrait */
-  @media (max-width: 600px) and (orientation: portrait) {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 15px;
-  }
-  
-  /* Very small mobile portrait */
-  @media (max-width: 480px) and (orientation: portrait) {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
-  
-  /* Height-based portrait adjustments */
-  @media (max-height: 600px) and (orientation: portrait) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 15px;
-  }
-  
-  @media (max-height: 500px) and (orientation: portrait) {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-`;
+// Use device-aware grid instead of styled grid
+// const StatsGrid = styled.div`
+//   display: grid;
+//   grid-template-columns: repeat(4, 1fr);
+//   gap: 20px;
+//   margin-bottom: 30px;
+//   
+//   /* Tablet and smaller */
+//   @media (max-width: 1200px) {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+//   
+//   /* Mobile landscape */
+//   @media (max-width: 768px) and (orientation: landscape) {
+//     grid-template-columns: repeat(2, 1fr);
+//     gap: 15px;
+//     margin-bottom: 20px;
+//   }
+//   
+//   /* Mobile portrait */
+//   @media (max-width: 768px) and (orientation: portrait) {
+//     grid-template-columns: repeat(2, 1fr);
+//     gap: 12px;
+//     margin-bottom: 20px;
+//   }
+//   
+//   /* Small mobile portrait */
+//   @media (max-width: 600px) and (orientation: portrait) {
+//     grid-template-columns: 1fr;
+//     gap: 12px;
+//     margin-bottom: 15px;
+//   }
+//   
+//   /* Very small mobile portrait */
+//   @media (max-width: 480px) and (orientation: portrait) {
+//     grid-template-columns: 1fr;
+//     gap: 10px;
+//     margin-bottom: 15px;
+//   }
+//   
+//   /* Height-based portrait adjustments */
+//   @media (max-height: 600px) and (orientation: portrait) {
+//     grid-template-columns: repeat(2, 1fr);
+//     gap: 12px;
+//     margin-bottom: 15px;
+//   }
+//   
+//   @media (max-height: 500px) and (orientation: portrait) {
+//     grid-template-columns: 1fr;
+//     gap: 10px;
+//     margin-bottom: 10px;
+//   }
+// `;
 
-const StatCard = styled.div`
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s, box-shadow 0.2s;
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  }
-  
-  @media (max-width: 768px) {
-    padding: 16px;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 12px;
-    border-radius: 12px;
-  }
-  
-  @media (max-height: 600px) and (orientation: portrait) {
-    padding: 14px;
-  }
-  
-  @media (max-height: 500px) and (orientation: portrait) {
-    padding: 10px;
-    border-radius: 10px;
-  }
-`;
+// Use device-aware card instead of styled card
+// const StatCard = styled.div`
+//   background: #ffffff;
+//   border-radius:16px;
+//   padding: 20px;
+//   position: relative;
+//   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+//   transition: transform 0.2s, box-shadow 0.2s;
+//   
+//   &:hover {
+//     transform: translateY(-2px);
+//     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+//   }
+//   
+//   @media (max-width: 768px) {
+//     padding: 16px;
+//   }
+//   
+//   @media (max-width: 480px) {
+//     padding: 12px;
+//     border-radius: 12px;
+//   }
+//   
+//   @media (max-height: 600px) and (orientation: portrait) {
+//     padding: 14px;
+//   }
+//   
+//   @media (max-height: 500px) and (orientation: portrait) {
+//     padding: 10px;
+//     border-radius: 10px;
+//   }
+// `;
 
 const StatLabel = styled.div`
   color: #666;
@@ -617,8 +628,8 @@ const Dashboard = () => {
       <ContentWrapper>
         <DashboardTitle>Dashboard</DashboardTitle>
         
-        <StatsGrid>
-          <StatCard>
+        <DeviceAwareGrid style={{ marginBottom: '30px' }}>
+          <DeviceAwareCard>
             <StatLabel>TODAY'S SALES</StatLabel>
             <StatValue>
               ₹12,450
@@ -627,26 +638,26 @@ const Dashboard = () => {
               </StatBadge>
             </StatValue>
             <StatSubtext>vs yesterday</StatSubtext>
-          </StatCard>
+          </DeviceAwareCard>
 
-          <StatCard>
+          <DeviceAwareCard>
             <StatLabel>TOTAL TRANSACTIONS</StatLabel>
             <StatValue>48</StatValue>
             <StatSubtext>Last 24 hours</StatSubtext>
-          </StatCard>
+          </DeviceAwareCard>
 
-          <StatCard>
+          <DeviceAwareCard>
             <StatLabel>PENDING SETTLEMENTS</StatLabel>
             <StatValue>₹8,200</StatValue>
             <StatSubtext>Expected by tomorrow</StatSubtext>
-          </StatCard>
+          </DeviceAwareCard>
 
-          <StatCard>
+          <DeviceAwareCard>
             <StatLabel>REFUND REQUESTS</StatLabel>
             <StatValue>2</StatValue>
             <StatSubtext>Requires attention</StatSubtext>
-          </StatCard>
-        </StatsGrid>
+          </DeviceAwareCard>
+        </DeviceAwareGrid>
 
         {/*<Tabs>
           <Tab $active={activeTab === 'daily'} onClick={() => setActiveTab('daily')}>Daily</Tab>

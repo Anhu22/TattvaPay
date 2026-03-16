@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { QrCode, Smartphone, Wifi, Zap, IndianRupee, Hash, ArrowRightCircle, Copy, CheckCircle, TrendingUp, Circle } from 'lucide-react';
+import { 
+  DeviceAwareContainer, 
+  DeviceAwareCard,
+  DeviceAwareButton,
+  DeviceAwareInput
+} from '../components/DeviceAwareComponents';
 
 // Main container - full screen
 const Container = styled.div`
@@ -607,13 +613,13 @@ export default function DynamicQRPage() {
   return (
     <Container>
       <ScrollableContent>        
-        <MainContainer>
+        <DeviceAwareContainer>
           <div>
             <Header>
               <h1>Create Dynamic QR</h1>
               <p>Generate real-time payment QR codes for your customers</p>
             </Header>
-            <LeftColumn>
+            <DeviceAwareCard>
               <Section>
                 <SectionTitle>TRANSACTION AMOUNT</SectionTitle>
                 <AmountDisplay>
@@ -624,7 +630,7 @@ export default function DynamicQRPage() {
 
               <Section>
                 <InputLabel>INVOICE ID / REFERENCE</InputLabel>
-                <StyledInput 
+                <DeviceAwareInput 
                   type="text"
                   placeholder="e.g. INV-2024-001"
                   value={invoiceId}
@@ -634,9 +640,9 @@ export default function DynamicQRPage() {
 
               <Section>
                 <ButtonGroup>
-                  <PrimaryButton>
+                  <DeviceAwareButton>
                     Generate QR & Sync Device <Zap size={18} />
-                  </PrimaryButton>
+                  </DeviceAwareButton>
                   {/*<SecondaryButton>
                     Sync Device <ArrowRightCircle size={18} />
                   </SecondaryButton>*/}
@@ -649,6 +655,7 @@ export default function DynamicQRPage() {
                   DEVICE MC-9028 IS ONLINE AND READY
                 </StatusCard>
               </Section>
+            </DeviceAwareCard>
             </LeftColumn>
           </div>
           
@@ -668,7 +675,8 @@ export default function DynamicQRPage() {
               />
             </QRImageContainer>
           </RightColumn>
-        </MainContainer>
+        </div>
+      </DeviceAwareContainer>
       </ScrollableContent>
 
       <Footer>
@@ -681,4 +689,4 @@ export default function DynamicQRPage() {
       </Footer>
     </Container>
   );
-}
+};

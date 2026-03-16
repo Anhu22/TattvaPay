@@ -1,61 +1,124 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";   
+import { useNavigate } from "react-router-dom";
+import { 
+  DeviceAwareContainer,
+  DeviceAwareButton,
+  DeviceAwareCard
+} from './DeviceAwareComponents';   
 
-const HeroSection = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-`;
+// Use device-aware container instead of styled section
+// const HeroSection = styled.section`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   gap: 60px;
+//   max-width: 1200px;
+//   margin: 0 auto;
+//   padding: 40px 20px;
+//   
+//   @media (max-width: 768px) {
+//     flex-direction: column;
+//     gap: 40px;
+//     padding: 30px 15px;
+//   }
+//   
+//   @media (max-width: 480px) {
+//     gap: 30px;
+//     padding: 20px 10px;
+//   }
+// `;
 
-const Left = styled.div`
-  flex: 1;
-  max-width: 550px;
+// Use device-aware card instead of styled div
+// const Left = styled.div`
+//   flex: 1;
+//   max-width: 550px;
+// 
+//   h1 {
+//     font-size: 56px;
+//     margin-bottom: 24px;
+//     font-weight: 700;
+//     line-height: 1.3;
+//     
+//     @media (max-width: 768px) {
+//       font-size: 42px;
+//       margin-bottom: 20px;
+//     }
+//     
+//     @media (max-width: 480px) {
+//       font-size: 32px;
+//       margin-bottom: 16px;
+//     }
+//   }
+// 
+//   p {
+//     color: black;
+//     margin-bottom: 8px;
+//     font-style: italic;
+//     font-size: 16px;
+//     line-height: 1.6;
+//     
+//     @media (max-width: 768px) {
+//       font-size: 15px;
+//       margin-bottom: 6px;
+//     }
+//     
+//     @media (max-width: 480px) {
+//       font-size: 14px;
+//       margin-bottom: 5px;
+//     }
+//   }
+// 
+//   h5 {
+//     color: gray;
+//     font-size: 14px;
+//     
+//     @media (max-width: 480px) {
+//       font-size: 13px;
+//     }
+//   }
+// `;
 
-  h1 {
-    font-size: 56px;
-    margin-bottom: 24px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
+// Use device-aware container instead of styled div
+// const ButtonGroup = styled.div`
+//   display: flex;
+//   gap: 20px;
+//   flex-wrap: wrap;
+//   
+//   @media (max-width: 768px) {
+//     gap: 15px;
+//   }
+//   
+//   @media (max-width: 480px) {
+//     gap: 12px;
+//   }
+// `;
 
-  p {
-    color: black;
-    margin-bottom: 8px;
-    font-style: italic;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  h5 {
-    color: gray;
-    font-size: 14px;
-  }
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-`;
-
-const PrimaryButton = styled.button`
-  background: #ff7a00;
-  color: white;
-  padding: 14px 28px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 16px;
-  transition: background 0.3s ease;
-
-  &:hover {
-    background: #e66a00;
-  }
-`;
+// Use device-aware button instead of styled button
+// const PrimaryButton = styled.button`
+//   background: #ff7a00;
+//   color: white;
+//   padding: 14px 28px;
+//   border-radius: 20px;
+//   font-weight: 600;
+//   font-size: 16px;
+//   transition: background 0.3s ease;
+//   
+//   &:hover {
+//     background: #e66a00;
+//     transform: translateY(-2px);
+//   }
+//   
+//   @media (max-width: 768px) {
+//     padding: 12px 24px;
+//     font-size: 15px;
+//   }
+//   
+//   @media (max-width: 480px) {
+//     padding: 10px 20px;
+//     font-size: 14px;
+//   }
+// `;
 
 const SecondaryButton = styled.button`
   background: #f0f0f0;
@@ -68,6 +131,17 @@ const SecondaryButton = styled.button`
 
   &:hover {
     background: #e0e0e0;
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 10px 20px;
+    font-size: 14px;
   }
 `;
 
@@ -120,6 +194,29 @@ const QRImage = styled.img`
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border: 4px solid black;
   transform: rotate(2deg);
+`;
+
+const Right = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const HeroImage = styled.img`
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  
+  @media (max-width: 768px) {
+    max-width: 400px;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 300px;
+  }
 `;
 
 
