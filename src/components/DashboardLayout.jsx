@@ -15,10 +15,30 @@ const LayoutContainer = styled.div`
   min-height: 100vh;
   background: #f8f9fc;
   
-  @media (max-width: 768px) {
-    flex-direction: column;
+  /* Tablet and smaller */
+  @media (max-width: 1200px) {
+    /* Keep flex layout for tablets */
   }
   
+  /* Mobile landscape */
+  @media (max-width: 768px) and (orientation: landscape) {
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Height-based portrait adjustments */
   @media (max-height: 600px) and (orientation: portrait) {
     flex-direction: column;
   }

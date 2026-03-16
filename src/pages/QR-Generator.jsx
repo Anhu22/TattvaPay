@@ -53,9 +53,52 @@ const MainContainer = styled.div`
   max-width: 1600px;
   margin: 0 auto;
   
-  @media (max-width: 968px) {
+  /* Tablet and smaller */
+  @media (max-width: 1200px) {
+    gap: 40px;
+  }
+  
+  /* Mobile landscape */
+  @media (max-width: 768px) and (orientation: landscape) {
+    flex-direction: row;
+    gap: 30px;
+    padding: 0 20px;
+  }
+  
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
+    padding: 0 15px;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    padding: 0 10px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    padding: 0 8px;
+  }
+  
+  /* Height-based portrait adjustments */
+  @media (max-height: 600px) and (orientation: portrait) {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
   }
 `;
@@ -83,11 +126,59 @@ const LeftColumn = styled.div`
   background: #ffffff;
   border-radius: 24px;
   padding: 40px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-  border: 1px solid #e5e7eb;
-  height: fit-content;
   width: 480px;
+  max-width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
+  
+  /* Tablet and smaller */
+  @media (max-width: 1200px) {
+    width: 420px;
+    padding: 35px;
+  }
+  
+  /* Mobile landscape */
+  @media (max-width: 768px) and (orientation: landscape) {
+    width: 380px;
+    padding: 30px;
+  }
+  
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 20px;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    width: 100%;
+    max-width: 350px;
+    padding: 20px;
+    border-radius: 18px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 16px;
+  }
+  
+  /* Height-based portrait adjustments */
+  @media (max-height: 600px) and (orientation: portrait) {
+    width: 100%;
+    max-width: 380px;
+    padding: 22px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    width: 100%;
+    max-width: 320px;
+    padding: 18px;
+  }
 `;
 
 const Section = styled.div`
@@ -116,10 +207,55 @@ const AmountDisplay = styled.div`
   gap: 8px;
   margin-bottom: 8px;
   
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    font-size: 36px;
+    gap: 6px;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    font-size: 32px;
+    gap: 5px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    font-size: 28px;
+    gap: 4px;
+  }
+  
+  /* Height-based portrait adjustments */
+  @media (max-height: 600px) and (orientation: portrait) {
+    font-size: 34px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    font-size: 30px;
+  }
+  
   svg {
     width: 32px;
     height: 32px;
     color: #1a1a1a;
+    
+    /* Mobile portrait */
+    @media (max-width: 768px) and (orientation: portrait) {
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* Small mobile portrait */
+    @media (max-width: 600px) and (orientation: portrait) {
+      width: 20px;
+      height: 20px;
+    }
+    
+    /* Very small mobile portrait */
+    @media (max-width: 480px) and (orientation: portrait) {
+      width: 18px;
+      height: 18px;
+    }
   }
 `;
 
@@ -127,6 +263,24 @@ const InvoiceInfo = styled.div`
   font-size: 16px;
   color: #666;
   margin-bottom: 24px;
+  
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
 `;
 
 const InputLabel = styled.div`
@@ -148,9 +302,42 @@ const StyledInput = styled.input`
   background: #ffffff;
   transition: all 0.2s;
   
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
   &::placeholder {
     color: #9ca3af;
     font-size: 16px;
+    
+    /* Mobile portrait */
+    @media (max-width: 768px) and (orientation: portrait) {
+      font-size: 14px;
+    }
+    
+    /* Small mobile portrait */
+    @media (max-width: 600px) and (orientation: portrait) {
+      font-size: 13px;
+    }
+    
+    /* Very small mobile portrait */
+    @media (max-width: 480px) and (orientation: portrait) {
+      font-size: 12px;
+    }
   }
   
   &:focus {
@@ -240,6 +427,46 @@ const RightColumn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 400px;
+  
+  /* Mobile landscape */
+  @media (max-width: 768px) and (orientation: landscape) {
+    min-height: 300px;
+  }
+  
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    width: 100%;
+    min-height: 250px;
+    order: 2;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    width: 100%;
+    min-height: 200px;
+    order: 2;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    width: 100%;
+    min-height: 180px;
+    order: 2;
+  }
+  
+  /* Height-based portrait adjustments */
+  @media (max-height: 600px) and (orientation: portrait) {
+    width: 100%;
+    min-height: 200px;
+    order: 2;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    width: 100%;
+    min-height: 150px;
+    order: 2;
+  }
 `;
 
 const QRImageContainer = styled.div`
@@ -247,6 +474,46 @@ const QRImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    padding: 10px;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    padding: 8px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    padding: 5px;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    
+    /* Mobile portrait */
+    @media (max-width: 768px) and (orientation: portrait) {
+      max-height: 200px;
+      object-fit: contain;
+    }
+    
+    /* Small mobile portrait */
+    @media (max-width: 600px) and (orientation: portrait) {
+      max-height: 150px;
+      object-fit: contain;
+    }
+    
+    /* Very small mobile portrait */
+    @media (max-width: 480px) and (orientation: portrait) {
+      max-height: 120px;
+      object-fit: contain;
+    }
+  }
 `;
 
 const Footer = styled.footer`

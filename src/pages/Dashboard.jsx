@@ -38,8 +38,38 @@ const ContentWrapper = styled.div`
   flex: 1;
   padding: 30px 40px;
   
-  @media (max-width: 768px) {
-    padding: 20px;
+  /* Tablet and smaller */
+  @media (max-width: 1200px) {
+    padding: 25px 30px;
+  }
+  
+  /* Mobile landscape */
+  @media (max-width: 768px) and (orientation: landscape) {
+    padding: 20px 25px;
+  }
+  
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    padding: 20px 20px;
+  }
+  
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    padding: 15px 15px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    padding: 12px 12px;
+  }
+  
+  /* Height-based portrait adjustments */
+  @media (max-height: 600px) and (orientation: portrait) {
+    padding: 20px 20px;
+  }
+  
+  @media (max-height: 500px) and (orientation: portrait) {
+    padding: 15px 15px;
   }
 `;
 
@@ -64,27 +94,40 @@ const StatsGrid = styled.div`
   gap: 20px;
   margin-bottom: 30px;
   
+  /* Tablet and smaller */
   @media (max-width: 1200px) {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  @media (max-width: 768px) {
+  /* Mobile landscape */
+  @media (max-width: 768px) and (orientation: landscape) {
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin-bottom: 20px;
   }
   
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+    margin-bottom: 20px;
   }
   
-  @media (max-width: 480px) {
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
     grid-template-columns: 1fr;
     gap: 10px;
     margin-bottom: 15px;
   }
   
+  /* Height-based portrait adjustments */
   @media (max-height: 600px) and (orientation: portrait) {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
@@ -216,18 +259,40 @@ const QuickActionsGrid = styled.div`
   gap: 20px;
   margin: 24px 0;
   
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+  /* Tablet and smaller */
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  /* Mobile landscape */
+  @media (max-width: 768px) and (orientation: landscape) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     margin: 20px 0;
   }
   
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
+  /* Mobile portrait */
+  @media (max-width: 768px) and (orientation: portrait) {
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    margin: 16px 0;
+    margin: 20px 0;
   }
   
+  /* Small mobile portrait */
+  @media (max-width: 600px) and (orientation: portrait) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 15px 0;
+  }
+  
+  /* Very small mobile portrait */
+  @media (max-width: 480px) and (orientation: portrait) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  /* Height-based portrait adjustments */
   @media (max-height: 600px) and (orientation: portrait) {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
