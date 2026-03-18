@@ -8,117 +8,117 @@ import {
 } from './DeviceAwareComponents';   
 
 // Use device-aware container instead of styled section
-// const HeroSection = styled.section`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   gap: 60px;
-//   max-width: 1200px;
-//   margin: 0 auto;
-//   padding: 40px 20px;
-//   
-//   @media (max-width: 768px) {
-//     flex-direction: column;
-//     gap: 40px;
-//     padding: 30px 15px;
-//   }
-//   
-//   @media (max-width: 480px) {
-//     gap: 30px;
-//     padding: 20px 10px;
-//   }
-// `;
+ const HeroSection = styled.section`
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 60px;
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 40px 20px;
+   
+   @media (max-width: 768px) {
+     flex-direction: column;
+     gap: 40px;
+     padding: 30px 15px;
+   }
+   
+  @media (max-width: 480px) {
+     gap: 30px;
+     padding: 20px 10px;
+   }
+ `;
 
 // Use device-aware card instead of styled div
-// const Left = styled.div`
-//   flex: 1;
-//   max-width: 550px;
-// 
-//   h1 {
-//     font-size: 56px;
-//     margin-bottom: 24px;
-//     font-weight: 700;
-//     line-height: 1.3;
-//     
-//     @media (max-width: 768px) {
-//       font-size: 42px;
-//       margin-bottom: 20px;
-//     }
-//     
-//     @media (max-width: 480px) {
-//       font-size: 32px;
-//       margin-bottom: 16px;
-//     }
-//   }
-// 
-//   p {
-//     color: black;
-//     margin-bottom: 8px;
-//     font-style: italic;
-//     font-size: 16px;
-//     line-height: 1.6;
-//     
-//     @media (max-width: 768px) {
-//       font-size: 15px;
-//       margin-bottom: 6px;
-//     }
-//     
-//     @media (max-width: 480px) {
-//       font-size: 14px;
-//       margin-bottom: 5px;
-//     }
-//   }
-// 
-//   h5 {
-//     color: gray;
-//     font-size: 14px;
-//     
-//     @media (max-width: 480px) {
-//       font-size: 13px;
-//     }
-//   }
-// `;
+ const Left = styled.div`
+   flex: 1;
+   max-width: 550px;
+ 
+   h1 {
+     font-size: 56px;
+     margin-bottom: 24px;
+     font-weight: 700;
+     line-height: 1.3;
+     
+     @media (max-width: 768px) {
+       font-size: 42px;
+       margin-bottom: 20px;
+     }
+     
+     @media (max-width: 480px) {
+       font-size: 32px;
+       margin-bottom: 16px;
+     }
+   }
+ 
+   p {
+     color: black;
+     margin-bottom: 8px;
+     font-style: italic;
+     font-size: 16px;
+     line-height: 1.6;
+     
+     @media (max-width: 768px) {
+       font-size: 15px;
+       margin-bottom: 6px;
+     }
+     
+     @media (max-width: 480px) {
+       font-size: 14px;
+       margin-bottom: 5px;
+    }
+   }
+ 
+   h5 {
+     color: gray;
+     font-size: 14px;
+     
+     @media (max-width: 480px) {
+       font-size: 13px;
+     }
+   }
+ `;
 
 // Use device-aware container instead of styled div
-// const ButtonGroup = styled.div`
-//   display: flex;
-//   gap: 20px;
-//   flex-wrap: wrap;
-//   
-//   @media (max-width: 768px) {
-//     gap: 15px;
-//   }
-//   
-//   @media (max-width: 480px) {
-//     gap: 12px;
-//   }
-// `;
+ const ButtonGroup = styled.div`
+   display: flex;
+   gap: 20px;
+   flex-wrap: wrap;
+   
+   @media (max-width: 768px) {
+     gap: 15px;
+   }
+   
+   @media (max-width: 480px) {
+     gap: 12px;
+   }
+`;
 
 // Use device-aware button instead of styled button
-// const PrimaryButton = styled.button`
-//   background: #ff7a00;
-//   color: white;
-//   padding: 14px 28px;
-//   border-radius: 20px;
-//   font-weight: 600;
-//   font-size: 16px;
-//   transition: background 0.3s ease;
-//   
-//   &:hover {
-//     background: #e66a00;
-//     transform: translateY(-2px);
-//   }
-//   
-//   @media (max-width: 768px) {
-//     padding: 12px 24px;
-//     font-size: 15px;
-//   }
-//   
-//   @media (max-width: 480px) {
-//     padding: 10px 20px;
-//     font-size: 14px;
-//   }
-// `;
+ const PrimaryButton = styled.button`
+   background: #ff7a00;
+   color: white;
+   padding: 14px 28px;
+   border-radius: 20px;
+   font-weight: 600;
+   font-size: 16px;
+   transition: background 0.3s ease;
+   
+   &:hover {
+     background: #e66a00;
+     transform: translateY(-2px);
+   }
+   
+   @media (max-width: 768px) {
+     padding: 12px 24px;
+     font-size: 15px;
+   }
+   
+   @media (max-width: 480px) {
+  padding: 10px 20px;
+    font-size: 14px;
+    }
+ `;
 
 const SecondaryButton = styled.button`
   background: #f0f0f0;

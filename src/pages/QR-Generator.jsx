@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { QrCode, Smartphone, Wifi, Zap, IndianRupee, Hash, ArrowRightCircle, Copy, CheckCircle, TrendingUp, Circle } from 'lucide-react';
+import { QrCode, Smartphone, Wifi, Zap, IndianRupee, Hash, ArrowRightCircle, Copy, CheckCircle, TrendingUp, Circle, CreditCard } from 'lucide-react';
 import { 
   DeviceAwareContainer, 
   DeviceAwareCard,
@@ -418,6 +418,28 @@ const StatusCard = styled.div`
   font-size: 14px;
 `;
 
+const PaymentMethodSelector = styled.div`
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+`;
+
+const PaymentOption = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: ${props => props.className === 'active' ? '#ff7a00' : '#f3f4f6'};
+  color: ${props => props.className === 'active' ? 'white' : '#64748b'};
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: ${props => props.className === 'active' ? '#e66a00' : '#e5e7eb'};
+  }
+`;
+
 const StatusDot = styled.span`
   display: inline-block;
   width: 8px;
@@ -614,7 +636,7 @@ export default function DynamicQRPage() {
     <Container>
       <ScrollableContent>        
         <DeviceAwareContainer>
-          <div>
+          <LeftColumn>
             <Header>
               <h1>Create Dynamic QR</h1>
               <p>Generate real-time payment QR codes for your customers</p>
@@ -632,10 +654,24 @@ export default function DynamicQRPage() {
                 <InputLabel>INVOICE ID / REFERENCE</InputLabel>
                 <DeviceAwareInput 
                   type="text"
-                  placeholder="e.g. INV-2024-001"
                   value={invoiceId}
                   onChange={(e) => setInvoiceId(e.target.value)}
+                  placeholder="INV-2024-001"
                 />
+              </Section>
+
+              <Section>
+                <SectionTitle>PAYMENT METHOD</SectionTitle>
+                <PaymentMethodSelector>
+                  <PaymentOption className="active">
+                    <IndianRupee size={16} />
+                    <span>UPI</span>
+                  </PaymentOption>
+                  <PaymentOption>
+                    <CreditCard size={16} />
+                    <span>Card</span>
+                  </PaymentOption>
+                </PaymentMethodSelector>
               </Section>
 
               <Section>
@@ -656,8 +692,7 @@ export default function DynamicQRPage() {
                 </StatusCard>
               </Section>
             </DeviceAwareCard>
-            </LeftColumn>
-          </div>
+          </LeftColumn>
           
           {/* Right Column - QR Image */}
           <RightColumn>
@@ -675,7 +710,6 @@ export default function DynamicQRPage() {
               />
             </QRImageContainer>
           </RightColumn>
-        </div>
       </DeviceAwareContainer>
       </ScrollableContent>
 

@@ -9,6 +9,17 @@ const Section = styled.section`
   align-items:center;
   gap:60px;
   padding:80px 10%;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 5%;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 30px;
+    padding: 40px 4%;
+  }
 `;
 
 const Left = styled.div`
@@ -19,6 +30,16 @@ const Left = styled.div`
     font-weight:700;
     line-height:1.3;
     margin-bottom:32px;
+    
+    @media (max-width: 768px) {
+      font-size: 42px;
+      margin-bottom: 24px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
   }
   
   h3 {
@@ -27,6 +48,16 @@ const Left = styled.div`
     font-weight:500;
     line-height:1.3;
     margin-bottom:32px;
+    
+    @media (max-width: 768px) {
+      font-size: 42px;
+      margin-bottom: 24px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -69,6 +100,17 @@ const LeftContainer = styled.div`
   flex-direction: column;
   align-items: left;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 12px;
+    gap: 12px;
+  }
 
   &:hover {
     background: #333;

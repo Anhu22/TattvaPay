@@ -9,6 +9,14 @@ const Section = styled.section`
   background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 60px 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 40px 0;
+  }
 `;
 
 const Container = styled.div`
@@ -17,6 +25,14 @@ const Container = styled.div`
   padding: 0 24px;
   position: relative;
   z-index: 2;
+  
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0 15px;
+  }
 `;
 
 const Header = styled.div`
@@ -36,6 +52,12 @@ const Header = styled.div`
     
     @media (max-width: 768px) {
       font-size: 36px;
+      margin-bottom: 12px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 28px;
+      margin-bottom: 10px;
     }
   }
   
@@ -49,6 +71,14 @@ const Header = styled.div`
     font-size: 18px;
     color: #666;
     line-height: 1.6;
+    
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
   }
 `;
 

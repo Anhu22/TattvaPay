@@ -72,16 +72,17 @@ const Header = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
   
-  @media (max-width: 968px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
   
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin: 0 auto;
+  @media (max-width: 480px) {
+    gap: 20px;
   }
 `;
 
