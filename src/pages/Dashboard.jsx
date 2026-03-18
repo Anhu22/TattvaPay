@@ -32,7 +32,7 @@ import {
   DeviceAwareCard, 
   DeviceAwareButton,
   DeviceAwareContainer 
-} from '../components/DeviceAwareComponents';
+} from '../components/DeviceAwareComponents.jsx';
 
 const Container = styled.div`
   min-height: 100vh;

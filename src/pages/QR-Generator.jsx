@@ -6,7 +6,7 @@ import {
   DeviceAwareCard,
   DeviceAwareButton,
   DeviceAwareInput
-} from '../components/DeviceAwareComponents';
+} from '../components/DeviceAwareComponents.jsx';
 
 // Main container - full screen
 const Container = styled.div`

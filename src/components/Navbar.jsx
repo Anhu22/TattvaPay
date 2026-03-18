@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { 
   DeviceAwareContainer,
   DeviceAwareButton
-} from './DeviceAwareComponents';
+} from './DeviceAwareComponents.jsx';
 
 // Use device-aware container instead of styled nav
 // const Nav = styled.nav`

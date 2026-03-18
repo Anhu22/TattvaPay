@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { getDeviceSpecificStyles } from '../utils/deviceDetection';
+import { getDeviceSpecificStyles } from '../utils/deviceDetection.jsx';
 
 // Device-aware styled component factory
 export const createDeviceAwareStyles = (baseStyles) => {
@@ -88,65 +88,46 @@ export const DeviceAwareGrid = styled.div`
     `,
     largeTablet: css`
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      gap: 16px;
     `,
     smallDesktop: css`
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 20px;
     `,
     largeDesktop: css`
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 24px;
     `,
     portrait: css`
-      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
+    `,
+    landscape: css`
+      gap: 16px;
     `
   })}
 `;
 
 // Device-aware container component
 export const DeviceAwareContainer = styled.div`
-  display: flex;
   ${createDeviceAwareStyles({
     layout: true,
     smallPhone: css`
-      flex-direction: column;
-      padding: 8px;
-      gap: 8px;
+      padding: 16px;
     `,
     largePhone: css`
-      flex-direction: column;
-      padding: 12px;
-      gap: 12px;
+      padding: 20px;
     `,
     smallTablet: css`
-      flex-direction: column;
-      padding: 16px;
-      gap: 16px;
+      padding: 24px;
     `,
     largeTablet: css`
-      flex-direction: row;
-      padding: 20px;
-      gap: 20px;
+      padding: 32px;
     `,
     smallDesktop: css`
-      flex-direction: row;
-      padding: 24px;
-      gap: 24px;
+      padding: 40px;
     `,
     largeDesktop: css`
-      flex-direction: row;
-      padding: 32px;
-      gap: 32px;
-    `,
-    portrait: css`
-      flex-direction: column;
-      gap: 15px;
-    `,
-    landscape: css`
-      flex-direction: row;
-      gap: 20px;
+      padding: 48px;
     `
   })}
 `;
@@ -154,35 +135,36 @@ export const DeviceAwareContainer = styled.div`
 // Device-aware card component
 export const DeviceAwareCard = styled.div`
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  
   ${createDeviceAwareStyles({
     sizing: true,
     smallPhone: css`
       padding: 12px;
-      border-radius: 12px;
     `,
     largePhone: css`
       padding: 16px;
-      border-radius: 14px;
     `,
     smallTablet: css`
       padding: 20px;
-      border-radius: 16px;
     `,
     largeTablet: css`
       padding: 24px;
-      border-radius: 18px;
     `,
     smallDesktop: css`
-      padding: 24px;
-      border-radius: 16px;
+      padding: 28px;
     `,
     largeDesktop: css`
       padding: 32px;
-      border-radius: 20px;
     `
   })}
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 // Device-aware button component
@@ -191,95 +173,82 @@ export const DeviceAwareButton = styled.button`
   color: white;
   border: none;
   border-radius: 8px;
-  cursor: pointer;
   font-weight: 600;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: all 0.3s ease;
   
   ${createDeviceAwareStyles({
-    typography: true,
+    sizing: true,
     smallPhone: css`
-      height: 40px;
-      padding: 0 12px;
+      padding: 10px 16px;
       font-size: 12px;
     `,
     largePhone: css`
-      height: 44px;
-      padding: 0 16px;
+      padding: 12px 20px;
       font-size: 14px;
     `,
     smallTablet: css`
-      height: 48px;
-      padding: 0 20px;
+      padding: 14px 24px;
       font-size: 15px;
     `,
     largeTablet: css`
-      height: 48px;
-      padding: 0 20px;
+      padding: 16px 28px;
       font-size: 16px;
     `,
     smallDesktop: css`
-      height: 48px;
-      padding: 0 24px;
+      padding: 16px 32px;
       font-size: 16px;
     `,
     largeDesktop: css`
-      height: 52px;
-      padding: 0 32px;
-      font-size: 18px;
+      padding: 18px 36px;
+      font-size: 16px;
     `
   })}
   
   &:hover {
     background: #e66a00;
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
   }
   
   &:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(255, 122, 0, 0.1);
   }
 `;
 
 // Device-aware input component
 export const DeviceAwareInput = styled.input`
-  width: 100%;
-  border: 1px solid #d1d5db;
+  border: 1px solid #e5e7eb;
   border-radius: 8px;
-  background: white;
-  transition: all 0.2s ease;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 100%;
   
   ${createDeviceAwareStyles({
-    typography: true,
+    sizing: true,
     smallPhone: css`
-      height: 36px;
-      padding: 0 12px;
-      font-size: 12px;
-    `,
-    largePhone: css`
-      height: 40px;
-      padding: 0 16px;
+      padding: 10px 12px;
       font-size: 14px;
     `,
-    smallTablet: css`
-      height: 44px;
-      padding: 0 20px;
+    largePhone: css`
+      padding: 12px 16px;
       font-size: 15px;
     `,
+    smallTablet: css`
+      padding: 14px 18px;
+      font-size: 16px;
+    `,
     largeTablet: css`
-      height: 44px;
-      padding: 0 20px;
+      padding: 16px 20px;
       font-size: 16px;
     `,
     smallDesktop: css`
-      height: 44px;
-      padding: 0 24px;
+      padding: 16px 22px;
       font-size: 16px;
     `,
     largeDesktop: css`
-      height: 48px;
-      padding: 0 32px;
-      font-size: 18px;
+      padding: 18px 24px;
+      font-size: 16px;
     `
   })}
   

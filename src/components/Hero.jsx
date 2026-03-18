@@ -5,7 +5,7 @@ import {
   DeviceAwareContainer,
   DeviceAwareButton,
   DeviceAwareCard
-} from './DeviceAwareComponents';   
+} from './DeviceAwareComponents.jsx';   
 
 // Use device-aware container instead of styled section
  const HeroSection = styled.section`
