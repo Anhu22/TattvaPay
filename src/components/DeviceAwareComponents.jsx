@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { getDeviceSpecificStyles } from '../utils/deviceDetection.jsx';
+import React from 'react';
 
 // Device-aware styled component factory
 export const createDeviceAwareStyles = (baseStyles) => {

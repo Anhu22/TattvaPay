@@ -1,3 +1,4 @@
+import React from 'react';
 // Device Detection Utility
 export const detectDevice = () => {
   const userAgent = navigator.userAgent;
