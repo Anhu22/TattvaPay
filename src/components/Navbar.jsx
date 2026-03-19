@@ -81,8 +81,16 @@ const DesktopButtons = styled.div`
   display: flex;
   gap: 10px;
   
-  @media (max-width: 768px) {
-    display: none;
+  @media (orientation: portrait) and (max-width: 768px) {
+    display: none; /* Hide in mobile portrait */
+  }
+  
+  @media (orientation: landscape) and (max-width: 768px) {
+    display: flex; /* Show in mobile landscape */
+  }
+  
+  @media (min-width: 769px) {
+    display: flex; /* Show on desktop */
   }
 `;
 
@@ -124,7 +132,7 @@ const MobileButtons = styled.div`
 const MobileHeader = styled.div`
   display: none;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 20px;
   
   @media (max-width: 768px) {
