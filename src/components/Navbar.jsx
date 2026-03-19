@@ -41,6 +41,10 @@ const DesktopLinks = styled.div`
   @media (max-width: 768px) {
     gap: 20px;
   }
+  
+  @media (orientation: portrait) and (max-width: 768px) {
+    display: none; /* Hide links in mobile portrait mode */
+  }
 `;
 
 const MobileLinks = styled.div`
@@ -50,7 +54,11 @@ const MobileLinks = styled.div`
   gap: 15px;
   
   @media (max-width: 768px) {
-    display: none; /* Hide mobile links since they're always visible */
+    display: flex; /* Show links in mobile menu */
+  }
+  
+  @media (orientation: portrait) and (max-width: 768px) {
+    display: flex; /* Show links in portrait mode */
   }
 `;
 
