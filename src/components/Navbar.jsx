@@ -1,9 +1,78 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { Menu, X } from 'lucide-react';
 import { 
   DeviceAwareContainer,
   DeviceAwareButton
 } from './DeviceAwareComponents.jsx';
+
+const MobileMenuButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ff7a00;
+  
+  @media (max-width: 768px) {
+    display: ${props => props.isOpen ? 'block' : 'none'};
+  }
+`;
+
+const DesktopLinks = styled.div`
+  display: flex;
+  gap: 30px;
+  
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+`;
+
+const MobileLinks = styled.div`
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  gap: 15px;
+  
+  @media (max-width: 768px) {
+    display: none; /* Hide mobile links since they're always visible */
+  }
+`;
+
+const DesktopButtons = styled.div`
+  display: flex;
+  gap: 10px;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileButtons = styled.div`
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 20px 20px;
+  
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
 
 // Use device-aware container instead of styled nav
 // const Nav = styled.nav`
@@ -125,19 +194,24 @@ import {
 //   
 //   @media (max-width: 480px) {
 //     padding:5px 10px;
-//     font-size:13px;
-//   }
-// `;
-
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  
-  const handleBuyNow = () => {
-    navigate("/buynow");
-  };
 
   const handleLogin = () => {
     navigate("/login");
+  };
+
+  const handleBuyNow = () => {
+    navigate("/dashboard");
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -161,10 +235,7 @@ const Navbar = () => {
         Tattvam<span style={{ color: '#ff7a00' }}>Pay</span>
       </h2>
 
-      <div style={{
-        display: 'flex',
-        gap: '30px'
-      }}>
+      <DesktopLinks>
         <a href="#features" style={{
           textDecoration: 'none',
           color: '#333',
@@ -183,12 +254,9 @@ const Navbar = () => {
           fontWeight: '500',
           fontSize: '16px'
         }}>Live Demo</a>
-      </div>
+      </DesktopLinks>
 
-      <div style={{
-        display: 'flex',
-        gap: '10px'
-      }}>
+      <DesktopButtons>
         <DeviceAwareButton 
           onClick={handleLogin}
           style={{
@@ -201,7 +269,48 @@ const Navbar = () => {
         <DeviceAwareButton onClick={handleBuyNow}>
           Buy Now
         </DeviceAwareButton>
-      </div>
+      </DesktopButtons>
+
+      <MobileMenuButton onClick={toggleMobileMenu}>
+        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </MobileMenuButton>
+
+      <MobileMenu isOpen={isMobileMenuOpen}>
+        <MobileLinks>
+          <a href="#features" onClick={closeMobileMenu} style={{
+            textDecoration: 'none',
+            color: '#333',
+            fontWeight: '500',
+            fontSize: '16px'
+          }}>Features</a>
+          <a href="#steps" onClick={closeMobileMenu} style={{
+            textDecoration: 'none',
+            color: '#333',
+            fontWeight: '500',
+            fontSize: '16px'
+          }}>How it works</a>
+          <a href="#demo" onClick={closeMobileMenu} style={{
+            textDecoration: 'none',
+            color: '#333',
+            fontWeight: '500',
+            fontSize: '16px'
+          }}>Live Demo</a>
+        </MobileLinks>
+        <MobileButtons>
+          <DeviceAwareButton 
+            onClick={handleLogin}
+            style={{
+              background: 'rgba(255, 122, 0, 0.1)',
+              color: '#ff7a00'
+            }}
+          >
+            Login
+          </DeviceAwareButton>
+          <DeviceAwareButton onClick={handleBuyNow}>
+            Buy Now
+          </DeviceAwareButton>
+        </MobileButtons>
+      </MobileMenu>
     </DeviceAwareContainer>
   );
 };
