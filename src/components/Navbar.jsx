@@ -34,16 +34,30 @@ const MobileMenu = styled.div`
   }
 `;
 
+const DesktopLogo = styled.h2`
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+  
+  span {
+    color: #ff7a00;
+  }
+  
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+`;
+
 const DesktopLinks = styled.div`
   display: flex;
   gap: 30px;
   
-  @media (max-width: 768px) {
-    gap: 20px;
+  @media (orientation: portrait) and (max-width: 768px) {
+    display: none; /* Only hide in mobile portrait */
   }
   
-  @media (orientation: portrait) and (max-width: 768px) {
-    display: none; /* Hide links in mobile portrait mode */
+  @media (orientation: landscape) and (max-width: 768px) {
+    display: flex; /* Show in mobile landscape */
   }
 `;
 
@@ -114,6 +128,11 @@ const MobileHeader = styled.div`
   
   @media (max-width: 768px) {
     display: flex;
+  }
+  
+  /* Hide on all desktop sizes */
+  @media (min-width: 769px) {
+    display: none !important;
   }
 `;
 
@@ -261,24 +280,33 @@ const Navbar = () => {
       </MobileHeader>
 
       <DesktopLinks>
-        <a href="#features" style={{
-          textDecoration: 'none',
-          color: '#333',
-          fontWeight: '500',
-          fontSize: '16px'
-        }}>Features</a>
-        <a href="#steps" style={{
-          textDecoration: 'none',
-          color: '#333',
-          fontWeight: '500',
-          fontSize: '16px'
-        }}>How it works</a>
-        <a href="#demo" style={{
-          textDecoration: 'none',
-          color: '#333',
-          fontWeight: '500',
-          fontSize: '16px'
-        }}>Live Demo</a>
+        <DesktopLogo>
+          Tattvam<span style={{ color: '#ff7a00' }}>Pay</span>
+        </DesktopLogo>
+        
+        <div style={{
+          display: 'flex',
+          gap: '30px'
+        }}>
+          <a href="#features" style={{
+            textDecoration: 'none',
+            color: '#333',
+            fontWeight: '500',
+            fontSize: '16px'
+          }}>Features</a>
+          <a href="#steps" style={{
+            textDecoration: 'none',
+            color: '#333',
+            fontWeight: '500',
+            fontSize: '16px'
+          }}>How it works</a>
+          <a href="#demo" style={{
+            textDecoration: 'none',
+            color: '#333',
+            fontWeight: '500',
+            fontSize: '16px'
+          }}>Live Demo</a>
+        </div>
       </DesktopLinks>
 
       <DesktopButtons>
