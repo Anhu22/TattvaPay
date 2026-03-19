@@ -66,6 +66,7 @@ const MobileLinks = styled.div`
   flex-direction: column;
   padding: 20px;
   gap: 15px;
+  text-align: left;
   
   @media (max-width: 768px) {
     display: flex; /* Show links in mobile menu */
@@ -256,7 +257,7 @@ const Navbar = () => {
     <DeviceAwareContainer style={{
       display: 'flex',
       justifyContent: 'space-between',
-      alignItems: 'center',
+      alignItems: 'left',
       padding: '20px 10%',
       background: 'white',
       position: 'sticky',
