@@ -274,7 +274,9 @@ const Navbar = () => {
         <h2 style={{
           fontWeight: '700',
           fontSize: '24px',
-          margin: '0'
+          margin: '0',
+          display: 'flex',
+          alignItems: 'left'
         }}>
           Tattvam<span style={{ color: '#ff7a00' }}>Pay</span>
         </h2>
@@ -350,6 +352,9 @@ const Navbar = () => {
           <DeviceAwareButton 
             onClick={handleLogin}
             style={{
+              display: 'flex',
+              justifyContent: 'right',
+              alignItems: 'right',
               background: 'rgba(255, 122, 0, 0.1)',
               color: '#ff7a00'
             }}
