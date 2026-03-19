@@ -106,6 +106,17 @@ const MobileButtons = styled.div`
 //   }
 // `;
 
+const MobileHeader = styled.div`
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
 // Use device-aware typography instead of styled components
 // const Logo = styled.h2`
 //   font-weight:700;
@@ -235,13 +246,19 @@ const Navbar = () => {
       boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
       borderBottom: '1px solid #ff7a00'
     }}>
-      <h2 style={{
-        fontWeight: '700',
-        fontSize: '24px',
-        margin: '0'
-      }}>
-        Tattvam<span style={{ color: '#ff7a00' }}>Pay</span>
-      </h2>
+      <MobileHeader>
+        <MobileMenuButton onClick={toggleMobileMenu}>
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </MobileMenuButton>
+
+        <h2 style={{
+          fontWeight: '700',
+          fontSize: '24px',
+          margin: '0'
+        }}>
+          Tattvam<span style={{ color: '#ff7a00' }}>Pay</span>
+        </h2>
+      </MobileHeader>
 
       <DesktopLinks>
         <a href="#features" style={{
@@ -278,10 +295,6 @@ const Navbar = () => {
           Buy Now
         </DeviceAwareButton>
       </DesktopButtons>
-
-      <MobileMenuButton onClick={toggleMobileMenu}>
-        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </MobileMenuButton>
 
       <MobileMenu isOpen={isMobileMenuOpen}>
         <MobileLinks>
